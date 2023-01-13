@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SoftwareEstimation</string>
+    <string name="software_estimation">Оценка трудозатрат</string>
+    <string name="choose_project_type">Тип проекта:</string>
+
+    <string-array name="project_types">
+        <item>Мобильное прил.</item>
+        <item>Веб прил.</item>
+        <item>Бекенд прил.</item>
+    </string-array>
+
+    <string name="enter_params_title">Параметры входа</string>
+    <string name="main_characteristics_title">Основные характеристики системы</string>
+    <string name="project_name">Название проекта</string>
+    <string name="project_description">Описание проекта</string>
+    <string name="enter_project_name">Введите название проекта</string>
+    <string name="enter_project_desctiption">Введите описание проекта</string>
+</resources>

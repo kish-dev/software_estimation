@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SoftwareEstimation</string>
+    <string name="software_estimation">Software estimation</string>
+    <string name="choose_project_type">Project type:</string>
+
+    <string-array name="project_types">
+        <item>Mobile app</item>
+        <item>Web app</item>
+        <item>Backend app</item>
+    </string-array>
+
+    <string-array name="numeric_values" translatable="false" >
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string name="enter_params_title">Enter parameters</string>
+    <string name="main_characteristics_title">Main system characteristics</string>
+    <string name="project_name">Project name</string>
+    <string name="project_description">Project desctiption</string>
+    <string name="enter_project_name">Enter project name</string>
+    <string name="enter_project_desctiption">Enter project description</string>
+</resources>
