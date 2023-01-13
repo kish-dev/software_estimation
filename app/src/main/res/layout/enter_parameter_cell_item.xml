@@ -19,16 +19,19 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title"
+                android:id="@+id/enter_params_cell_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/UsualText"
                 tools:text="Easy" />
 
-            <Spinner
-                android:id="@+id/choose_value_spinner"
+            <EditText
+                android:layout_marginHorizontal="4dp"
+                android:id="@+id/enter_params_et"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="0" />
 
         </LinearLayout>
 

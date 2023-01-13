@@ -5,9 +5,10 @@
     <string name="choose_project_type">Тип проекта:</string>
 
     <string-array name="project_types">
-        <item>Мобильное прил.</item>
-        <item>Веб прил.</item>
-        <item>Бекенд прил.</item>
+        <item>Android прил.</item>
+        <item>iOS прил.</item>
+        <item>Web прил.</item>
+        <item>Backend прил.</item>
     </string-array>
 
     <string name="enter_params_title">Параметры входа</string>
@@ -16,4 +17,5 @@
     <string name="project_description">Описание проекта</string>
     <string name="enter_project_name">Введите название проекта</string>
     <string name="enter_project_desctiption">Введите описание проекта</string>
+    <string name="ready">Готово</string>
 </resources>

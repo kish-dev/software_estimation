@@ -4,7 +4,8 @@
     <string name="choose_project_type">Project type:</string>
 
     <string-array name="project_types">
-        <item>Mobile app</item>
+        <item>Android app</item>
+        <item>iOS app</item>
         <item>Web app</item>
         <item>Backend app</item>
     </string-array>
@@ -24,4 +25,5 @@
     <string name="project_description">Project desctiption</string>
     <string name="enter_project_name">Enter project name</string>
     <string name="enter_project_desctiption">Enter project description</string>
+    <string name="ready">Ready</string>
 </resources>

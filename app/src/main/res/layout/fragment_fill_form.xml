@@ -6,6 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".fill_project_form_feature.FillFormFragment">
 
+    <Spinner
+        android:id="@+id/choose_project_type_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/choose_project_type_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/choose_project_type_tv"
+        app:layout_constraintTop_toTopOf="@+id/choose_project_type_tv" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ready_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/purple_200"
+        android:text="@string/ready"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_characteristics_rv" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/project_title_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/enter_params_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/project_title_tv"
+        tools:text="24-ghfn24pwieu0t3h2inofewig0h42t8hgeiqonng24h08giqepnnqgh04" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title_tv"
         android:layout_width="wrap_content"
@@ -25,33 +59,10 @@
         android:layout_marginTop="16dp"
         android:text="@string/project_name"
         android:textAppearance="@style/UsualText"
-        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_tv" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/project_title_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        tools:text="24-ghfn24pwieu0t3h2inofewig0h42t8hgeiqonng24h08giqepnnqgh04"
-        android:hint="@string/enter_params_title"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/project_title_tv" />
-
-    <Spinner
-        android:id="@+id/choose_project_type_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/choose_project_type_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/choose_project_type_tv"
-        app:layout_constraintTop_toTopOf="@+id/choose_project_type_tv" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/choose_project_type_tv"
@@ -66,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@+id/project_title_et" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/enter_params_title_tv"
+        android:id="@+id/enter_params_cell_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -92,7 +103,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_params_title_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/enter_params_cell_title_tv" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_characteristics_rv"
