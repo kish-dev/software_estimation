@@ -3,14 +3,49 @@
     <string name="software_estimation">Software estimation</string>
     <string name="choose_project_type">Project type:</string>
 
+    <string name="enter_params_title">Enter parameters</string>
+
+    <string name="main_characteristics_title">Main system characteristics</string>
+
+    <string name="project_name">Project name</string>
+    <string name="project_description">Project description</string>
+    <string name="enter_project_name">Enter project name</string>
+    <string name="enter_project_description">Enter project description</string>
+    <string name="ready">Ready</string>
+    <string name="ei">EI</string>
+    <string name="eo">EO</string>
+    <string name="eq">EQ</string>
+    <string name="ilf">ILF</string>
+    <string name="elf">ELF</string>
+    <string name="data_exchange">Data exchange:</string>
+    <string name="distributed_functions">Distributed functions:</string>
+    <string name="capacity">Capacity:</string>
+    <string name="heavily_used_configuration">Heavily used configuration:</string>
+    <string name="transaction_intensity">Transaction intensity:</string>
+    <string name="dialogue_input">Dialogue input:</string>
+    <string name="end_user_efficiency">End User Efficiency:</string>
+    <string name="live_updates">Live update:</string>
+    <string name="complexity_of_data_processing">Complexity of data processing:</string>
+    <string name="reuse">Reuse:</string>
+    <string name="ease_of_installation">Ease of installation:</string>
+    <string name="ease_of_use">Ease of use:</string>
+    <string name="prevalence">Prevalence:</string>
+    <string name="ease_of_change">Ease of change:</string>
+    <string name="zero">0</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="estimated_project">Estimated project</string>
+    <string name="estimation_is">Estimation is</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="difficult">Difficult</string>
     <string-array name="project_types">
         <item>Android app</item>
         <item>iOS app</item>
         <item>Web app</item>
         <item>Backend app</item>
     </string-array>
-
-    <string-array name="numeric_values" translatable="false" >
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="numeric_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -18,12 +53,4 @@
         <item>4</item>
         <item>5</item>
     </string-array>
-
-    <string name="enter_params_title">Enter parameters</string>
-    <string name="main_characteristics_title">Main system characteristics</string>
-    <string name="project_name">Project name</string>
-    <string name="project_description">Project desctiption</string>
-    <string name="enter_project_name">Enter project name</string>
-    <string name="enter_project_desctiption">Enter project description</string>
-    <string name="ready">Ready</string>
 </resources>

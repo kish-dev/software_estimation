@@ -13,10 +13,10 @@
         app:cardCornerRadius="12dp">
 
         <LinearLayout
-            android:padding="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/enter_params_cell_title_tv"
@@ -26,12 +26,13 @@
                 tools:text="Easy" />
 
             <EditText
-                android:layout_marginHorizontal="4dp"
-                android:id="@+id/enter_params_et"
+                android:id="@+id/enter_params_cell_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
                 android:background="@null"
-                android:hint="0" />
+                android:hint="@string/zero"
+                android:inputType="number" />
 
         </LinearLayout>
 

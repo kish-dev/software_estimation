@@ -1,6 +1,7 @@
 package com.example.softwareestimation.fill_project_form_feature
 
+import com.example.softwareestimation.data.db.FillFormFunctionPoints
+
 interface FillFormUseCase {
-    fun checkFormFullFilledCorrectly(): Boolean
-    fun sendFilledForm()
+    suspend fun sendFilledForm(form: FillFormFunctionPoints)
 }

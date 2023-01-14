@@ -2,16 +2,19 @@ package com.example.softwareestimation.fill_project_form_feature.lists.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.softwareestimation.R
 
-class MainCharacteristicsAdapter :
+class MainCharacteristicsAdapter(
+    private val listener: MainCharacteristicsViewHolderListener,
+) :
     ListAdapter<MainCharacteristicsVo, MainCharacteristicsViewHolder>(
         MainCharacteristicsVoDiffUtil()
     ) {
 
-    interface MainCharacteristicsListener {
+    interface MainCharacteristicsViewHolderListener {
         fun onSpinnerChange(
             position: Int,
             holder: MainCharacteristicsViewHolder,
@@ -27,19 +30,21 @@ class MainCharacteristicsAdapter :
         val inflater = LayoutInflater.from(context)
         val itemView =
             inflater.inflate(R.layout.enter_main_parameter_cell_item, parent, false)
-        return MainCharacteristicsViewHolder(itemView, object : MainCharacteristicsListener {
+        return MainCharacteristicsViewHolder(itemView, object : MainCharacteristicsViewHolderListener {
             override fun onSpinnerChange(
                 position: Int,
                 holder: MainCharacteristicsViewHolder,
                 spinnerItemPosition: Int
             ) {
                 currentList[position].count = spinnerItemPosition
+                listener.onSpinnerChange(position, holder, spinnerItemPosition)
             }
+
         })
     }
 
     override fun onBindViewHolder(holder: MainCharacteristicsViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), position)
     }
 
     private class MainCharacteristicsVoDiffUtil : DiffUtil.ItemCallback<MainCharacteristicsVo>() {

@@ -5,14 +5,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.softwareestimation.R
+import com.example.softwareestimation.fill_project_form_feature.lists.enter.enter_param_cell.EnterParameterCellType
+import com.example.softwareestimation.fill_project_form_feature.lists.enter.enter_param_cell.EnterParametersCellAdapter
 
-class EnterParametersAdapter :
+class EnterParametersAdapter(
+    private val listener: EnterParametersCellAdapter.EnterParametersListener
+) :
     ListAdapter<EnterParameterVo, EnterParametersViewHolder>(
         EnterParametersVoDiffUtil()
     ) {
 
     interface EnterParametersListener {
-
+        fun onCountChange(
+            position: Int,
+            type: EnterParameterCellType,
+            count: Int,
+        )
     }
 
     override fun onCreateViewHolder(
@@ -22,14 +30,12 @@ class EnterParametersAdapter :
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         val itemView =
-            inflater.inflate(R.layout.enter_main_parameter_cell_item, parent, false)
-        return EnterParametersViewHolder(itemView, object : EnterParametersListener {
-
-        })
+            inflater.inflate(R.layout.enter_params_view, parent, false)
+        return EnterParametersViewHolder(itemView, listener)
     }
 
     override fun onBindViewHolder(holder: EnterParametersViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), position)
     }
 
     private class EnterParametersVoDiffUtil : DiffUtil.ItemCallback<EnterParameterVo>() {

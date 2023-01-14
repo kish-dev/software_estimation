@@ -1,5 +1,7 @@
 package com.example.softwareestimation.fill_project_form_feature.lists.enter.enter_param_cell
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
@@ -7,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.softwareestimation.R
 
 class EnterParametersCellViewHolder(
-    itemView: View,
-    listener: EnterParametersCellAdapter.EnterParametersListener,
+    private val itemView: View,
+    private val listener: EnterParametersCellAdapter.EnterParametersListener,
 ) : RecyclerView.ViewHolder(itemView) {
 
     var title: AppCompatTextView? = null
@@ -17,12 +19,27 @@ class EnterParametersCellViewHolder(
     init {
         itemView.apply {
             title = findViewById(R.id.enter_params_cell_title_tv)
-            countEditText = findViewById(R.id.choose_value_spinner)
+            countEditText = findViewById(R.id.enter_params_cell_et)
         }
     }
 
-    fun bind(enterParameterCellVo: EnterParameterCellVo) {
-        title?.text = enterParameterCellVo.title
+    fun bind(enterParameterCellVo: EnterParameterCellVo, position: Int) {
+        title?.text = itemView.context.getText(enterParameterCellVo.title)
+        countEditText?.setText(enterParameterCellVo.count.toString())
+
+        countEditText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                listener
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
     }
 
 }
