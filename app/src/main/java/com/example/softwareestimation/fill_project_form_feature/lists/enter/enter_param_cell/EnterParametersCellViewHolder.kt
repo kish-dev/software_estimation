@@ -33,7 +33,14 @@ class EnterParametersCellViewHolder(
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                listener.onCellCountChange(position, enterParameterCellVo.type, s.toString().toInt())
+                listener.onCellCountChange(
+                    position, enterParameterCellVo.type,
+                    if (s?.isBlank() == true) {
+                        0
+                    } else {
+                        s.toString().toInt()
+                    }
+                )
             }
 
             override fun afterTextChanged(s: Editable?) {

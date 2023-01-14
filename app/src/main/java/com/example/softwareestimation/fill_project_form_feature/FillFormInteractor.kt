@@ -25,20 +25,20 @@ class FillFormInteractor @Inject constructor(
         functionalSize += form.enterParams[0].difficultCount * 6
 
         functionalSize += form.enterParams[1].easyCount * 4
-        functionalSize += form.enterParams[1].easyCount * 5
-        functionalSize += form.enterParams[1].easyCount * 7
+        functionalSize += form.enterParams[1].mediumCount * 5
+        functionalSize += form.enterParams[1].difficultCount * 7
 
         functionalSize += form.enterParams[2].easyCount * 3
-        functionalSize += form.enterParams[2].easyCount * 4
-        functionalSize += form.enterParams[2].easyCount * 6
+        functionalSize += form.enterParams[2].mediumCount * 4
+        functionalSize += form.enterParams[2].difficultCount * 6
 
         functionalSize += form.enterParams[3].easyCount * 7
-        functionalSize += form.enterParams[3].easyCount * 10
-        functionalSize += form.enterParams[3].easyCount * 15
+        functionalSize += form.enterParams[3].mediumCount * 10
+        functionalSize += form.enterParams[3].difficultCount * 15
 
         functionalSize += form.enterParams[4].easyCount * 5
-        functionalSize += form.enterParams[4].easyCount * 7
-        functionalSize += form.enterParams[4].easyCount * 10
+        functionalSize += form.enterParams[4].mediumCount * 7
+        functionalSize += form.enterParams[4].difficultCount * 10
 
         var mainCharacteristicsSize = 0
         form.mainSystemCharacteristics.forEach {
