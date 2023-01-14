@@ -192,17 +192,18 @@ class FillFormFragment : Fragment() {
                         enterParams = enterParametersAdapter.currentList,
                         mainSystemCharacteristics = mainCharacteristicsAdapter.currentList,
                     )
-                    viewModel.fillForm(functionPoint)
-                    val estimatedProjectFragment = EstimatedProjectFragment.newInstance(projectName)
-                    requireActivity().supportFragmentManager
-                        .beginTransaction()
-                        .replace(
-                            R.id.fragment_container,
-                            estimatedProjectFragment as Fragment,
-                            EstimatedProjectFragment::class.java.simpleName
-                        )
-                        .addToBackStack(this@FillFormFragment.javaClass.simpleName)
-                        .commit()
+                    viewModel.fillForm(functionPoint) {
+                        val estimatedProjectFragment = EstimatedProjectFragment.newInstance(projectName)
+                        requireActivity().supportFragmentManager
+                            .beginTransaction()
+                            .replace(
+                                R.id.fragment_container,
+                                estimatedProjectFragment as Fragment,
+                                EstimatedProjectFragment::class.java.simpleName
+                            )
+                            .addToBackStack(this@FillFormFragment.javaClass.simpleName)
+                            .commit()
+                    }
                 }
             }
 

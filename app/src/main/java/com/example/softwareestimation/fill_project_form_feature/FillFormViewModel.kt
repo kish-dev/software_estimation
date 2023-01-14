@@ -1,8 +1,12 @@
 package com.example.softwareestimation.fill_project_form_feature
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.softwareestimation.R
+import com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -18,9 +22,10 @@ class FillFormViewModel @Inject constructor(
     var functionPoint: StateFlow<FillFormFunctionPointsVo> =
         _functionPoint
 
-    fun fillForm(fillForm: FillFormFunctionPointsVo) {
+    fun fillForm(fillForm: FillFormFunctionPointsVo, lambda: () -> Unit) {
         viewModelScope.launch {
             useCase.sendFilledForm(fillForm.toDomain())
+            lambda.invoke()
         }
     }
 

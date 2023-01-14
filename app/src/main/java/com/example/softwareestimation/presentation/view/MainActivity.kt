@@ -29,4 +29,16 @@ class MainActivity : AppCompatActivity() {
                 FillFormFragment::class.java.simpleName
             ).commit()
     }
+
+    override fun onBackPressed() {
+        when (supportFragmentManager.backStackEntryCount) {
+            1 -> {
+                finish()
+            }
+
+            else -> {
+                super.onBackPressed()
+            }
+        }
+    }
 }

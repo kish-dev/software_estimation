@@ -54,8 +54,8 @@ class EstimatedProjectFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.estimatedProject.collect {
                     with(binding) {
-                        estimatedProjectTitle.text = it?.projectName
-                        estimatedProjectMonthValue.text = it?.fullHumanMonth.toString()
+                        estimatedProjectTitle.text = it.projectName
+                        estimatedProjectMonthValue.text = it.fullHumanMonth.toString()
                     }
                 }
             }

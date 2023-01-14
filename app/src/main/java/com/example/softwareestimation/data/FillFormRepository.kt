@@ -10,7 +10,7 @@ class FillFormRepository @Inject constructor(
 ){
 
     fun getProjectTypeLOC(type: ProjectTypes): Int {
-        return 0
+        return 53
     }
 
     suspend fun saveEstimatedProjectResult(estimatedProject: EstimatedProject) {
