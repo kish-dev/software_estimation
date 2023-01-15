@@ -1,5 +1,6 @@
 package com.example.softwareestimation.estimated_project_feature
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -50,14 +51,16 @@ class EstimatedProjectFragment : Fragment() {
         projectName?.let { viewModel.getEstimatedProject(it) }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.estimatedProject.collect {
                     with(binding) {
                         estimatedProjectTitle.text = it.projectName
-                        estimatedProjectMonthValue.text = "${String.format("%.1f", it.fullHumanMonth)}" +
-                                requireContext().getText(R.string.man_month)
+                        estimatedProjectMonthValue.text =
+                            "${String.format("%.1f", it.fullHumanMonth)} " +
+                                    requireContext().getText(R.string.man_month)
 
                     }
                 }
@@ -70,11 +73,12 @@ class EstimatedProjectFragment : Fragment() {
         private const val PROJECT_NAME = "project_name"
 
         @JvmStatic
-        fun newInstance(productId: String): EstimatedProjectFragment = EstimatedProjectFragment().apply {
-            arguments = Bundle().apply {
-                putString(PROJECT_NAME, productId)
+        fun newInstance(productId: String): EstimatedProjectFragment =
+            EstimatedProjectFragment().apply {
+                arguments = Bundle().apply {
+                    putString(PROJECT_NAME, productId)
+                }
             }
-        }
     }
 
 }
