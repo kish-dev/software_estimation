@@ -32,19 +32,18 @@
     <string name="prevalence">Prevalence:</string>
     <string name="ease_of_change">Ease of change:</string>
     <string name="zero">0</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="estimated_project">Estimated project</string>
     <string name="estimation_is">Estimation is</string>
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="difficult">Difficult</string>
+    <string name="man_month">man-month</string>
     <string-array name="project_types">
         <item>Android app</item>
         <item>iOS app</item>
         <item>Web app</item>
         <item>Backend app</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="numeric_values" translatable="false">
         <item>0</item>
         <item>1</item>

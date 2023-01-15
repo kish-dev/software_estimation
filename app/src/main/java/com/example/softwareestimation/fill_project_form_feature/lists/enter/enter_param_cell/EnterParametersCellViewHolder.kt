@@ -25,7 +25,12 @@ class EnterParametersCellViewHolder(
 
     fun bind(enterParameterCellVo: EnterParameterCellVo, position: Int) {
         title?.text = itemView.context.getText(enterParameterCellVo.title)
-        countEditText?.setText(enterParameterCellVo.count.toString())
+        when (enterParameterCellVo.count) {
+            null -> {}
+            else -> {
+                countEditText?.setText(enterParameterCellVo.count.toString())
+            }
+        }
 
         countEditText?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

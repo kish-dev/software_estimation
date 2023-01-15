@@ -30,17 +30,17 @@ data class FillFormFunctionPointsVo(
                         listOf(
                             EnterParameterCellVo(
                                 title = R.string.easy,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.EASY
                             ),
                             EnterParameterCellVo(
                                 title = R.string.medium,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.MEDIUM
                             ),
                             EnterParameterCellVo(
                                 title = R.string.difficult,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.DIFFICULT
                             )
                         )
@@ -50,17 +50,17 @@ data class FillFormFunctionPointsVo(
                         listOf(
                             EnterParameterCellVo(
                                 title = R.string.easy,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.EASY
                             ),
                             EnterParameterCellVo(
                                 title = R.string.medium,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.MEDIUM
                             ),
                             EnterParameterCellVo(
                                 title = R.string.difficult,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.DIFFICULT
                             )
                         )
@@ -70,17 +70,17 @@ data class FillFormFunctionPointsVo(
                         listOf(
                             EnterParameterCellVo(
                                 title = R.string.easy,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.EASY
                             ),
                             EnterParameterCellVo(
                                 title = R.string.medium,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.MEDIUM
                             ),
                             EnterParameterCellVo(
                                 title = R.string.difficult,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.DIFFICULT
                             )
                         )
@@ -90,17 +90,17 @@ data class FillFormFunctionPointsVo(
                         listOf(
                             EnterParameterCellVo(
                                 title = R.string.easy,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.EASY
                             ),
                             EnterParameterCellVo(
                                 title = R.string.medium,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.MEDIUM
                             ),
                             EnterParameterCellVo(
                                 title = R.string.difficult,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.DIFFICULT
                             )
                         )
@@ -110,17 +110,17 @@ data class FillFormFunctionPointsVo(
                         listOf(
                             EnterParameterCellVo(
                                 title = R.string.easy,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.EASY
                             ),
                             EnterParameterCellVo(
                                 title = R.string.medium,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.MEDIUM
                             ),
                             EnterParameterCellVo(
                                 title = R.string.difficult,
-                                count = 0,
+                                count = null,
                                 type = EnterParameterCellType.DIFFICULT
                             )
                         )

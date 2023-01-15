@@ -38,9 +38,10 @@
     <string name="prevalence">Распространенность:</string>
     <string name="ease_of_change">Легкость изменения:</string>
     <string name="zero">0</string>
-    <string name="estimated_project">Estimated project</string>
-    <string name="estimation_is">Estimation is</string>
-    <string name="easy">Easy</string>
-    <string name="medium">Medium</string>
-    <string name="difficult">Difficult</string>
+    <string name="estimated_project">Оценённый проект</string>
+    <string name="estimation_is">Оценка проекта:</string>
+    <string name="easy">Просто</string>
+    <string name="medium">Средне</string>
+    <string name="difficult">Сложно</string>
+    <string name="man_month">человеко-мес.</string>
 </resources>

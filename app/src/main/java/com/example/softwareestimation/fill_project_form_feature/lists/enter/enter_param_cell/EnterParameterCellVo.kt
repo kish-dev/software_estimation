@@ -2,7 +2,7 @@ package com.example.softwareestimation.fill_project_form_feature.lists.enter.ent
 
 data class EnterParameterCellVo(
     val title: Int,
-    var count: Int,
+    var count: Int?,
     val type: EnterParameterCellType,
 )
 

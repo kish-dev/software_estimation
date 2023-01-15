@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.softwareestimation.R
 import com.example.softwareestimation.databinding.FragmentEstimatedProjectBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -55,7 +56,9 @@ class EstimatedProjectFragment : Fragment() {
                 viewModel.estimatedProject.collect {
                     with(binding) {
                         estimatedProjectTitle.text = it.projectName
-                        estimatedProjectMonthValue.text = it.fullHumanMonth.toString()
+                        estimatedProjectMonthValue.text = "${String.format("%.1f", it.fullHumanMonth)}" +
+                                requireContext().getText(R.string.man_month)
+
                     }
                 }
             }
