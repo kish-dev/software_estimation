@@ -209,21 +209,20 @@ class EstimatedProjectFragment : Fragment() {
             pieChart.setUsePercentValues(true)
 
             //remove the description label on the lower left corner, default true if not set
-            pieChart.getDescription().setEnabled(false)
+            pieChart.description.isEnabled = false
 
             //enabling the user to rotate the chart, default true
-            pieChart.setRotationEnabled(true)
+            pieChart.isRotationEnabled = true
             //adding friction when rotating the pie chart
-            pieChart.setDragDecelerationFrictionCoef(0.9f)
+            pieChart.dragDecelerationFrictionCoef = 0.9f
             //setting the first entry start from right hand side, default starting from top
-            pieChart.setRotationAngle(0f)
+            pieChart.rotationAngle = 0f
 
             //highlight the entry when it is tapped, default true if not set
-            pieChart.setHighlightPerTapEnabled(true)
+            pieChart.isHighlightPerTapEnabled = true
             //adding animation so the entries pop up from 0 degree
             pieChart.animateY(1400, EaseInOutQuad)
             //setting the color of the hole in the middle, default white
-            pieChart.setHoleColor(Color.parseColor("#000000"))
         }
     }
 
