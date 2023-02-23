@@ -11,14 +11,8 @@ class FillFormRepository @Inject constructor(
 
     fun getProjectTypeLOC(type: ProjectTypes): Int {
         return when (type) {
-            ProjectTypes.ANDROID -> {
-                ANDROID_FP_TO_LOC
-            }
-            ProjectTypes.IOS -> {
-                IOS_FP_TO_LOC
-            }
-            ProjectTypes.BACKEND -> {
-                BACKEND_FP_TO_LOC
+            ProjectTypes.MOBILE -> {
+                MOBILE_FP_TO_LOC
             }
             ProjectTypes.WEB -> {
                 WEB_FP_TO_LOC
@@ -31,9 +25,7 @@ class FillFormRepository @Inject constructor(
     }
 
     private companion object {
-        val ANDROID_FP_TO_LOC = 53
-        val IOS_FP_TO_LOC = 45
-        val BACKEND_FP_TO_LOC = 53
-        val WEB_FP_TO_LOC = 47
+        const val MOBILE_FP_TO_LOC = 50
+        const val WEB_FP_TO_LOC = 47
     }
 }

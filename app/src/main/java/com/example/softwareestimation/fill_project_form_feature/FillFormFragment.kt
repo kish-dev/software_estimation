@@ -95,19 +95,13 @@ class FillFormFragment : Fragment() {
                 projectDescription = projectDescriptionEt.text.toString(),
                 projectType = when (chooseProjectTypeSpinner.selectedItemPosition) {
                     0 -> {
-                        ProjectTypes.ANDROID
+                        ProjectTypes.MOBILE
                     }
                     1 -> {
-                        ProjectTypes.IOS
-                    }
-                    2 -> {
                         ProjectTypes.WEB
                     }
-                    3 -> {
-                        ProjectTypes.BACKEND
-                    }
                     else -> {
-                        ProjectTypes.ANDROID
+                        ProjectTypes.MOBILE
                     }
                 },
                 enterParams = enterParametersAdapter.currentList,
@@ -174,19 +168,13 @@ class FillFormFragment : Fragment() {
                         projectDescription = projectDescriptionEt.text.toString(),
                         projectType = when (chooseProjectTypeSpinner.selectedItemPosition) {
                             0 -> {
-                                ProjectTypes.ANDROID
+                                ProjectTypes.MOBILE
                             }
                             1 -> {
-                                ProjectTypes.IOS
-                            }
-                            2 -> {
                                 ProjectTypes.WEB
                             }
-                            3 -> {
-                                ProjectTypes.BACKEND
-                            }
                             else -> {
-                                ProjectTypes.ANDROID
+                                ProjectTypes.MOBILE
                             }
                         },
                         enterParams = enterParametersAdapter.currentList,

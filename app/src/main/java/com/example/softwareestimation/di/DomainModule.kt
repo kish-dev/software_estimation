@@ -2,6 +2,7 @@ package com.example.softwareestimation.di
 
 import com.example.softwareestimation.data.FillFormRepository
 import com.example.softwareestimation.data.db.EstimatedProjectDao
+import com.example.softwareestimation.data.db.ProjectPercentSpreadForTypesDao
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectInteractor
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectRepository
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectUseCase
@@ -36,9 +37,13 @@ class DomainModule {
     @Singleton
     @Provides
     fun provideEstimatedProjectRepository(
-        estimatedProjectDao: EstimatedProjectDao
+        estimatedProjectDao: EstimatedProjectDao,
+        projectPercentSpreadForTypesDao: ProjectPercentSpreadForTypesDao,
     ): EstimatedProjectRepository {
-        return EstimatedProjectRepository(estimatedProjectDao)
+        return EstimatedProjectRepository(
+            estimatedProjectDao,
+            projectPercentSpreadForTypesDao
+        )
     }
 
     @Singleton

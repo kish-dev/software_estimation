@@ -10,10 +10,8 @@ data class FillFormFunctionPoints(
 )
 
 enum class ProjectTypes {
-    ANDROID,
-    IOS,
+    MOBILE,
     WEB,
-    BACKEND,
 }
 
 data class EnterParams(

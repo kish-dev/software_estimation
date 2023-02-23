@@ -2,13 +2,13 @@ package com.example.softwareestimation.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.softwareestimation.data.db.EstimatedProjectDao
-import com.example.softwareestimation.data.db.SoftwareEstimationDatabase
+import com.example.softwareestimation.data.db.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import java.util.*
 import javax.inject.Singleton
 
 
@@ -31,6 +31,13 @@ class DataModule {
         softwareEstimationDatabase: SoftwareEstimationDatabase
     ): EstimatedProjectDao {
         return softwareEstimationDatabase.estimatedProjectDao()
+    }
+
+    @Provides
+    fun provideProjectPercentSpreadDao(
+        softwareEstimationDatabase: SoftwareEstimationDatabase
+    ): ProjectPercentSpreadForTypesDao {
+        return softwareEstimationDatabase.projectPercentSpreadDao()
     }
 
     private companion object {

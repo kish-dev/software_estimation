@@ -38,11 +38,16 @@
     <string name="medium">Medium</string>
     <string name="difficult">Difficult</string>
     <string name="man_month">man-month</string>
+    <string name="androidPercent">Android</string>
+    <string name="iosPercent">iOS</string>
+    <string name="frontendPercent">frontend</string>
+    <string name="analyticPercent">analytics</string>
+    <string name="backendPercent">backend</string>
+    <string name="managePercent">manage</string>
+    <string name="testPercent">test</string>
     <string-array name="project_types">
-        <item>Android app</item>
-        <item>iOS app</item>
+        <item>Mobile app</item>
         <item>Web app</item>
-        <item>Backend app</item>
     </string-array>
     <string-array name="numeric_values" translatable="false">
         <item>0</item>

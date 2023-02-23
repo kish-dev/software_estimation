@@ -75,4 +75,7 @@ dependencies {
 
     // DI
     implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
+
+    // Pie diagram
+    implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"
 }

@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/layout/enter_main_parameter_cell_item.xml" value="0.24094202898550723" />
         <entry key="app/src/main/res/layout/enter_parameter_cell_item.xml" value="0.8026157102723054" />
         <entry key="app/src/main/res/layout/enter_params_view.xml" value="0.2171875" />
-        <entry key="app/src/main/res/layout/fragment_estimated_project.xml" value="0.1894630192502533" />
+        <entry key="app/src/main/res/layout/fragment_estimated_project.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_fill_form.xml" value="0.1870967741935484" />
       </map>
     </option>

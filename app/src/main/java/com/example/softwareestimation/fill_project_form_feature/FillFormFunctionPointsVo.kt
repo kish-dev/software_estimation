@@ -23,7 +23,7 @@ data class FillFormFunctionPointsVo(
             return FillFormFunctionPointsVo(
                 projectName = "",
                 projectDescription = "",
-                projectType = ProjectTypes.ANDROID,
+                projectType = ProjectTypes.MOBILE,
                 enterParams = listOf(
                     EnterParameterVo(
                         R.string.ei,

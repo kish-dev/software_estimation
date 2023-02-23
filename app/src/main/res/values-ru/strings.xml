@@ -5,10 +5,8 @@
     <string name="choose_project_type">Тип проекта:</string>
 
     <string-array name="project_types">
-        <item>Android прил.</item>
-        <item>iOS прил.</item>
+        <item>Мобильное прил.</item>
         <item>Web прил.</item>
-        <item>Backend прил.</item>
     </string-array>
 
     <string name="enter_params_title">Параметры входа</string>
@@ -44,4 +42,11 @@
     <string name="medium">Средне</string>
     <string name="difficult">Сложно</string>
     <string name="man_month">человеко-мес.</string>
+    <string name="androidPercent">Android</string>
+    <string name="iosPercent">iOS</string>
+    <string name="frontendPercent">frontend</string>
+    <string name="analyticPercent">analytics</string>
+    <string name="backendPercent">backend</string>
+    <string name="managePercent">manage</string>
+    <string name="testPercent">test</string>
 </resources>

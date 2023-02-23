@@ -10,4 +10,6 @@ import androidx.room.RoomDatabase
 abstract class SoftwareEstimationDatabase : RoomDatabase() {
 
     abstract fun estimatedProjectDao(): EstimatedProjectDao
+
+    abstract fun projectPercentSpreadDao(): ProjectPercentSpreadForTypesDao
 }
