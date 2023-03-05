@@ -9,11 +9,15 @@ class AllProjectsRepository @Inject constructor(private val estimatedProjectDao:
 
     suspend fun getAllProject(searchText: String): List<EstimatedProject> {
         val estimatedProjects = estimatedProjectDao.getAllProjectsByName(searchText)
+        Log.d("AllProjectsRepository", "getAllProjectByName: ${estimatedProjects.size}")
+        return estimatedProjects
+    }
+
+    suspend fun getAllProject(): List<EstimatedProject> {
+        val estimatedProjects = estimatedProjectDao.getAllProjects()
         Log.d("AllProjectsRepository", "getAllProject: ${estimatedProjects.size}")
         return estimatedProjects
     }
 
-    suspend fun getAllProject(): List<EstimatedProject> =
-        estimatedProjectDao.getAllProjects()
 
 }
