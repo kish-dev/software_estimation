@@ -2,15 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/all_projects__layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/all_employees__layout"
     android:layout_marginHorizontal="16dp"
     android:layout_marginTop="16dp"
     android:background="@drawable/background_all_projects_item">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/all_projects__project_image"
+        android:id="@+id/all_employees__employee_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -20,15 +20,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/all_projects__project_name"
+        android:id="@+id/all_employees__employee_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:maxLines="1"
         android:ellipsize="end"
+        android:maxLines="1"
         android:textAppearance="@style/UsualText.Title"
-        app:layout_constraintBottom_toBottomOf="@+id/all_projects__project_image"
-        app:layout_constraintStart_toEndOf="@+id/all_projects__project_image"
+        app:layout_constraintBottom_toBottomOf="@+id/all_employees__employee_image"
+        app:layout_constraintStart_toEndOf="@+id/all_employees__employee_image"
+        tools:text="Tinkoff Mobile App" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/all_employees__employee_surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/UsualText.Title"
+        app:layout_constraintBottom_toBottomOf="@+id/all_employees__employee_name"
+        app:layout_constraintStart_toEndOf="@+id/all_employees__employee_name"
         tools:text="Tinkoff Mobile App" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

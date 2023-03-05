@@ -46,6 +46,7 @@
     <string name="managePercent">manage</string>
     <string name="testPercent">test</string>
     <string name="search_project">Search projects...</string>
+    <string name="search_employees">Search employees...</string>
     <string-array name="project_types">
         <item>Mobile app</item>
         <item>Web app</item>

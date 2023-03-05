@@ -50,4 +50,5 @@
     <string name="managePercent">manage</string>
     <string name="testPercent">test</string>
     <string name="search_project">Искать проекты...</string>
+    <string name="search_employees">Search employees...</string>
 </resources>

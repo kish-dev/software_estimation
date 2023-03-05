@@ -1,12 +1,15 @@
 package com.example.softwareestimation.di
 
+import com.example.softwareestimation.all_employees_feature.AllEmployeesInteractor
+import com.example.softwareestimation.all_employees_feature.AllEmployeesRepository
+import com.example.softwareestimation.all_employees_feature.AllEmployeesUseCase
 import com.example.softwareestimation.all_projects_feature.AllProjectsInteractor
 import com.example.softwareestimation.all_projects_feature.AllProjectsRepository
 import com.example.softwareestimation.all_projects_feature.AllProjectsUseCase
-import com.example.softwareestimation.all_projects_feature.AllProjectsViewHolder
 import com.example.softwareestimation.data.FillFormRepository
 import com.example.softwareestimation.data.db.estimated_project.EstimatedProjectDao
 import com.example.softwareestimation.data.db.ProjectPercentSpreadForTypesDao
+import com.example.softwareestimation.data.db.employees.EmployeeDao
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectInteractor
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectRepository
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectUseCase
@@ -48,6 +51,14 @@ class DomainModule {
 
     @Singleton
     @Provides
+    fun provideAllEmployeesUseCase(
+        allEmployeesRepository: AllEmployeesRepository
+    ): AllEmployeesUseCase {
+        return AllEmployeesInteractor(allEmployeesRepository)
+    }
+
+    @Singleton
+    @Provides
     fun provideEstimatedProjectRepository(
         estimatedProjectDao: EstimatedProjectDao,
         projectPercentSpreadForTypesDao: ProjectPercentSpreadForTypesDao,
@@ -72,5 +83,12 @@ class DomainModule {
         return AllProjectsRepository(estimatedProjectDao)
     }
 
+    @Singleton
+    @Provides
+    fun provideAllEmployeesRepository(
+        employeesDao: EmployeeDao
+    ): AllEmployeesRepository {
+        return AllEmployeesRepository(employeesDao)
+    }
 
 }

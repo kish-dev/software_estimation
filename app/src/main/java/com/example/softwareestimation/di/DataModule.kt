@@ -3,6 +3,7 @@ package com.example.softwareestimation.di
 import android.content.Context
 import androidx.room.Room
 import com.example.softwareestimation.data.db.*
+import com.example.softwareestimation.data.db.employees.EmployeeDao
 import com.example.softwareestimation.data.db.estimated_project.EstimatedProjectDao
 import dagger.Module
 import dagger.Provides
@@ -38,6 +39,13 @@ class DataModule {
         softwareEstimationDatabase: SoftwareEstimationDatabase
     ): ProjectPercentSpreadForTypesDao {
         return softwareEstimationDatabase.projectPercentSpreadDao()
+    }
+
+    @Provides
+    fun provideEmployeeDao(
+        softwareEstimationDatabase: SoftwareEstimationDatabase
+    ): EmployeeDao {
+        return softwareEstimationDatabase.employeeDao()
     }
 
     private companion object {
