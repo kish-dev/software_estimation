@@ -1,7 +1,7 @@
 package com.example.softwareestimation.fill_project_form_feature
 
 import com.example.softwareestimation.data.FillFormRepository
-import com.example.softwareestimation.data.db.EstimatedProject
+import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
 import com.example.softwareestimation.data.db.FillFormFunctionPoints
 import com.example.softwareestimation.data.db.ProjectTypes
 import java.util.*

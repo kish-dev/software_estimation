@@ -3,12 +3,12 @@ package com.example.softwareestimation.di
 import android.content.Context
 import androidx.room.Room
 import com.example.softwareestimation.data.db.*
+import com.example.softwareestimation.data.db.estimated_project.EstimatedProjectDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import java.util.*
 import javax.inject.Singleton
 
 

@@ -194,7 +194,6 @@ class FillFormFragment : Fragment() {
                     }
                 }
             }
-
         }
     }
 

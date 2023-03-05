@@ -1,7 +1,7 @@
 package com.example.softwareestimation.data
 
-import com.example.softwareestimation.data.db.EstimatedProject
-import com.example.softwareestimation.data.db.EstimatedProjectDao
+import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
+import com.example.softwareestimation.data.db.estimated_project.EstimatedProjectDao
 import com.example.softwareestimation.data.db.ProjectTypes
 import javax.inject.Inject
 

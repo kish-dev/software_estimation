@@ -2,7 +2,7 @@ package com.example.softwareestimation.estimated_project_feature
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.softwareestimation.data.db.EstimatedProject
+import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
 import com.example.softwareestimation.data.db.ProjectPercentSpreadForTypes
 import com.example.softwareestimation.data.db.ProjectTypes
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -49,7 +49,7 @@ class EstimatedProjectViewModel @Inject constructor(
         }
     }
 
-    fun updateProjectPercentSpread(type: ProjectTypes) {
+    private fun updateProjectPercentSpread(type: ProjectTypes) {
         viewModelScope.launch(handler) {
             val projectPercentSpread = useCase.getProjectPercentSpread(type)
             _projectPercentSpread.emit(projectPercentSpread)

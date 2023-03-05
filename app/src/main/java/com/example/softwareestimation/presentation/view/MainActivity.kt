@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.softwareestimation.R
+import com.example.softwareestimation.all_projects_feature.AllProjectsFragment
 import com.example.softwareestimation.fill_project_form_feature.FillFormFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,16 +18,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToFillFormFragment() {
-        val fillFormFragment = FillFormFragment()
+        val allProjectsFragment = AllProjectsFragment()
         supportFragmentManager
             .beginTransaction()
             .replace(
                 R.id.fragment_container,
-                fillFormFragment as Fragment,
-                FillFormFragment::class.java.simpleName
+                allProjectsFragment as Fragment,
+                AllProjectsFragment::class.java.simpleName
             )
             .addToBackStack(
-                FillFormFragment::class.java.simpleName
+                AllProjectsFragment::class.java.simpleName
             ).commit()
     }
 

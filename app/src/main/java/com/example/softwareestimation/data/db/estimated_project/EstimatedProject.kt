@@ -1,19 +1,20 @@
-package com.example.softwareestimation.data.db
+package com.example.softwareestimation.data.db.estimated_project
 
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import com.example.softwareestimation.data.db.ProjectTypes
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
 @Entity(
     tableName = "estimatedProjects",
-    indices = [Index(
-        value = arrayOf("projectName"),
-        unique = true
-    )]
+//    indices = [Index(
+//        value = arrayOf("projectName"),
+//        unique = true
+//    )]
 )
 data class EstimatedProject(
     @PrimaryKey

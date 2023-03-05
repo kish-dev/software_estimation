@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/background_all_projects_item.xml" value="0.1855" />
+        <entry key="app/src/main/res/drawable/background_purple_rounded.xml" value="0.1855" />
+        <entry key="app/src/main/res/drawable/background_search.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.134" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22780797101449277" />
+        <entry key="app/src/main/res/layout/all_projects_cell_item.xml" value="0.32518115942028986" />
         <entry key="app/src/main/res/layout/enter_main_parameter_cell_item.xml" value="0.24094202898550723" />
         <entry key="app/src/main/res/layout/enter_parameter_cell_item.xml" value="0.8026157102723054" />
         <entry key="app/src/main/res/layout/enter_params_view.xml" value="0.2171875" />
+        <entry key="app/src/main/res/layout/fragment_all_projects.xml" value="0.42147674560546877" />
         <entry key="app/src/main/res/layout/fragment_estimated_project.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_fill_form.xml" value="0.1870967741935484" />
       </map>

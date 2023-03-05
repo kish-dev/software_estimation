@@ -49,4 +49,5 @@
     <string name="backendPercent">backend</string>
     <string name="managePercent">manage</string>
     <string name="testPercent">test</string>
+    <string name="search_project">Искать проекты...</string>
 </resources>
