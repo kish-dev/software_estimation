@@ -8,7 +8,7 @@ class AllProjectsInteractor @Inject constructor(
 ): AllProjectsUseCase {
 
     override suspend fun getAllProjects(searchText: String): List<EstimatedProject> =
-        repository.getAllProject(searchText)
+        repository.getAllProject("%${searchText}%")
 
     override suspend fun getAllProjects(): List<EstimatedProject> =
         repository.getAllProject()

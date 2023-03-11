@@ -22,7 +22,7 @@ buildscript {
         ktxVersion = '1.7.0'
 
         lifecycleVersion = '2.4.1'
-        materialVersion = '1.5.0'
+        materialVersion = '1.4.0'
         roomVersion = '2.4.2'
 
         calendarVersion = '1.7.0'

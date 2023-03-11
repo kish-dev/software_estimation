@@ -37,7 +37,7 @@ class AllEmployeesViewHolder(
 
         employee = bindEmployee
         name?.text = bindEmployee.name
-        surname?.text = bindEmployee.name
+        surname?.text = bindEmployee.surname
 
         when (bindEmployee.specializations.firstOrNull()?.sphere) {
             null -> {}

@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.softwareestimation.R
 import com.example.softwareestimation.data.db.ProjectTypes
@@ -45,6 +46,7 @@ class FillFormFragment : Fragment() {
             }
         }
     )
+
     private val mainCharacteristicsAdapter = MainCharacteristicsAdapter(
         listener = object : MainCharacteristicsAdapter.MainCharacteristicsViewHolderListener {
             override fun onSpinnerChange(
@@ -181,16 +183,9 @@ class FillFormFragment : Fragment() {
                         mainSystemCharacteristics = mainCharacteristicsAdapter.currentList,
                     )
                     viewModel.fillForm(functionPoint) {
-                        val estimatedProjectFragment = EstimatedProjectFragment.newInstance(projectName)
-                        requireActivity().supportFragmentManager
-                            .beginTransaction()
-                            .replace(
-                                R.id.fragment_container,
-                                estimatedProjectFragment as Fragment,
-                                EstimatedProjectFragment::class.java.simpleName
-                            )
-                            .addToBackStack(this@FillFormFragment.javaClass.simpleName)
-                            .commit()
+                        findNavController().navigate(
+                            R.id.action_fillFormFragment_to_estimatedProjectFragment
+                        )
                     }
                 }
             }

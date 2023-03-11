@@ -1,5 +1,8 @@
 package com.example.softwareestimation.di
 
+import com.example.softwareestimation.add_employee_feature.AddEmployeeInteractor
+import com.example.softwareestimation.add_employee_feature.AddEmployeeRepository
+import com.example.softwareestimation.add_employee_feature.AddEmployeeUseCase
 import com.example.softwareestimation.all_employees_feature.AllEmployeesInteractor
 import com.example.softwareestimation.all_employees_feature.AllEmployeesRepository
 import com.example.softwareestimation.all_employees_feature.AllEmployeesUseCase
@@ -59,6 +62,14 @@ class DomainModule {
 
     @Singleton
     @Provides
+    fun provideAddEmployeesUseCase(
+        addEmployeeRepository: AddEmployeeRepository
+    ): AddEmployeeUseCase {
+        return AddEmployeeInteractor(addEmployeeRepository)
+    }
+
+    @Singleton
+    @Provides
     fun provideEstimatedProjectRepository(
         estimatedProjectDao: EstimatedProjectDao,
         projectPercentSpreadForTypesDao: ProjectPercentSpreadForTypesDao,
@@ -89,6 +100,14 @@ class DomainModule {
         employeesDao: EmployeeDao
     ): AllEmployeesRepository {
         return AllEmployeesRepository(employeesDao)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAddEmployeeRepository(
+        employeesDao: EmployeeDao
+    ): AddEmployeeRepository {
+        return AddEmployeeRepository(employeesDao)
     }
 
 }

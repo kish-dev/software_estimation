@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_project_nav"
+    app:startDestination="@id/fillFormFragment">
+    <fragment
+        android:id="@+id/fillFormFragment"
+        android:name="com.example.softwareestimation.fill_project_form_feature.FillFormFragment"
+        android:label="fragment_fill_form"
+        tools:layout="@layout/fragment_fill_form" >
+        <action
+            android:id="@+id/action_fillFormFragment_to_estimatedProjectFragment"
+            app:destination="@id/estimatedProjectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/estimatedProjectFragment"
+        android:name="com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment"
+        android:label="fragment_estimated_project"
+        tools:layout="@layout/fragment_estimated_project" />
+</navigation>

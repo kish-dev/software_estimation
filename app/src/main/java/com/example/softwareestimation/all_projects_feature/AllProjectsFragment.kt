@@ -7,17 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.softwareestimation.R
 import com.example.softwareestimation.databinding.FragmentAllProjectsBinding
-import com.example.softwareestimation.databinding.FragmentEstimatedProjectBinding
-import com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment
-import com.example.softwareestimation.estimated_project_feature.EstimatedProjectViewModel
 import com.example.softwareestimation.fill_project_form_feature.FillFormFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -35,17 +32,9 @@ class AllProjectsFragment : Fragment() {
         listener = object : AllProjectsAdapter.AllProjectsViewHolderListener {
             override fun onProjectClick(position: Int, holder: AllProjectsViewHolder) {
                 holder.project?.let {
-                    val estimatedProjectFragment =
-                        EstimatedProjectFragment.newInstance(it.projectName)
-                    requireActivity().supportFragmentManager
-                        .beginTransaction()
-                        .replace(
-                            R.id.fragment_container,
-                            estimatedProjectFragment as Fragment,
-                            EstimatedProjectFragment::class.java.simpleName
-                        )
-                        .addToBackStack(this@AllProjectsFragment.javaClass.simpleName)
-                        .commit()
+                    findNavController().navigate(
+                        R.id.action_allProjectsFragment_to_estimatedProjectFragment
+                    )
                 }
             }
         }
@@ -70,19 +59,6 @@ class AllProjectsFragment : Fragment() {
 
     private fun initViews() {
         with(binding) {
-
-            plusToDelete.setOnClickListener {
-                val fillFormFragment = FillFormFragment()
-                requireActivity().supportFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.fragment_container,
-                        fillFormFragment as Fragment,
-                        FillFormFragment::class.java.simpleName
-                    )
-                    .addToBackStack(this@AllProjectsFragment.javaClass.simpleName)
-                    .commit()
-            }
 
             searchProject.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(

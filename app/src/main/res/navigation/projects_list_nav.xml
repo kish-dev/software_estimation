@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/projects_list_nav"
+    app:startDestination="@id/allProjectsFragment">
+
+    <fragment
+        android:id="@+id/allProjectsFragment"
+        android:name="com.example.softwareestimation.all_projects_feature.AllProjectsFragment"
+        android:label="fragment_all_projects"
+        tools:layout="@layout/fragment_all_projects" >
+        <action
+            android:id="@+id/action_allProjectsFragment_to_estimatedProjectFragment"
+            app:destination="@id/estimatedProjectFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/estimatedProjectFragment2"
+        android:name="com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment"
+        android:label="fragment_estimated_project"
+        tools:layout="@layout/fragment_estimated_project" />
+</navigation>

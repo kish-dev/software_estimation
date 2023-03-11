@@ -51,4 +51,22 @@
     <string name="testPercent">test</string>
     <string name="search_project">Искать проекты...</string>
     <string name="search_employees">Search employees...</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_surname">Enter surname</string>
+    <string name="add_spec">Add specialization</string>
+    <string name="add_busy">Add busy</string>
+    <string name="intern_level">Intern</string>
+    <string name="junior_level">Junior</string>
+    <string name="middle_level">Middle</string>
+    <string name="senior_level">Senior</string>
+    <string name="lead_level">Lead</string>
+    <string name="specs">Specialization</string>
+    <string name="decline">Decline</string>
+    <string name="accept">Accept</string>
+    <string name="projects_list_screen_description">Project list screen description</string>
+    <string name="projects_list_screen_title">Projects list</string>
+    <string name="add_project_screen_description">Add project screen</string>
+    <string name="add_project_screen_title">Add project screen title</string>
+    <string name="employees_list_screen_title">Employees</string>
+    <string name="employees_list_screen_description">Employees</string>
 </resources>

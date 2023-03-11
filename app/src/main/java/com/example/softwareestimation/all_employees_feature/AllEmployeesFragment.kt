@@ -11,10 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.softwareestimation.R
 import com.example.softwareestimation.databinding.FragmentAllEmployeesBinding
-import com.example.softwareestimation.fill_project_form_feature.FillFormFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -57,16 +57,9 @@ class AllEmployeesFragment : Fragment() {
 
             //TODO add AddEmployeeFragment
             allEmployeesAddEmployee.setOnClickListener {
-                val fillFormFragment = FillFormFragment()
-                requireActivity().supportFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.fragment_container,
-                        fillFormFragment as Fragment,
-                        FillFormFragment::class.java.simpleName
-                    )
-                    .addToBackStack(this@AllEmployeesFragment.javaClass.simpleName)
-                    .commit()
+                findNavController().navigate(
+                    R.id.action_allEmployeesFragment_to_addEmployeeFragment
+                )
             }
 
             allEmployeesSearchEmployees.addTextChangedListener(object : TextWatcher {

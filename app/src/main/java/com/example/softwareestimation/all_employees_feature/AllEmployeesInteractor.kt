@@ -10,6 +10,6 @@ class AllEmployeesInteractor @Inject constructor(private val repository: AllEmpl
         repository.getAllEmployees()
 
     override suspend fun getAllEmployees(name: String): List<Employee> =
-        repository.getAllEmployees(name)
+        repository.getAllEmployees("%${name}%")
 
 }
