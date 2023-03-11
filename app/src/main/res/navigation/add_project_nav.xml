@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/fillFormFragment"
         android:name="com.example.softwareestimation.fill_project_form_feature.FillFormFragment"
-        android:label="fragment_fill_form"
+        android:label="@string/add_project_screen_title"
         tools:layout="@layout/fragment_fill_form" >
         <action
             android:id="@+id/action_fillFormFragment_to_estimatedProjectFragment"
@@ -16,6 +16,6 @@
     <fragment
         android:id="@+id/estimatedProjectFragment"
         android:name="com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment"
-        android:label="fragment_estimated_project"
+        android:label="@string/fragment_estimated_project_screen"
         tools:layout="@layout/fragment_estimated_project" />
 </navigation>

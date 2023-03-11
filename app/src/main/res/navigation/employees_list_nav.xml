@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/allEmployeesFragment"
         android:name="com.example.softwareestimation.all_employees_feature.AllEmployeesFragment"
-        android:label="fragment_all_employees"
+        android:label="@string/employees_list_screen_title"
         tools:layout="@layout/fragment_all_employees" >
         <action
             android:id="@+id/action_allEmployeesFragment_to_addEmployeeFragment"
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/addEmployeeFragment"
         android:name="com.example.softwareestimation.add_employee_feature.AddEmployeeFragment"
-        android:label="fragment_add_employee"
+        android:label="@string/fragment_add_employee_screen"
         tools:layout="@layout/fragment_add_employee" >
         <action
             android:id="@+id/action_addEmployeeFragment_to_allEmployeesFragment"

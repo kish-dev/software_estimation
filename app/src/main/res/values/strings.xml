@@ -63,8 +63,10 @@
     <string name="projects_list_screen_title">Projects list</string>
     <string name="add_project_screen_description">Add project screen</string>
     <string name="add_project_screen_title">Add project</string>
-    <string name="employees_list_screen_title">Employees</string>
+    <string name="employees_list_screen_title">Employees list</string>
     <string name="employees_list_screen_description">Employees</string>
+    <string name="fragment_estimated_project_screen">Estimated project</string>
+    <string name="fragment_add_employee_screen">Add employee</string>
     <string-array name="project_types">
         <item>Mobile app</item>
         <item>Web app</item>

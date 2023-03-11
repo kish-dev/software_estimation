@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/allProjectsFragment"
         android:name="com.example.softwareestimation.all_projects_feature.AllProjectsFragment"
-        android:label="fragment_all_projects"
+        android:label="@string/projects_list_screen_title"
         tools:layout="@layout/fragment_all_projects" >
         <action
             android:id="@+id/action_allProjectsFragment_to_estimatedProjectFragment"
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/estimatedProjectFragment2"
         android:name="com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment"
-        android:label="fragment_estimated_project"
+        android:label="@string/fragment_estimated_project_screen"
         tools:layout="@layout/fragment_estimated_project" />
 </navigation>

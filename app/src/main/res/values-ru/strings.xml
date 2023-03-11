@@ -66,7 +66,9 @@
     <string name="projects_list_screen_description">Project list screen description</string>
     <string name="projects_list_screen_title">Projects list</string>
     <string name="add_project_screen_description">Add project screen</string>
-    <string name="add_project_screen_title">Add project screen title</string>
-    <string name="employees_list_screen_title">Employees</string>
+    <string name="add_project_screen_title">Add project</string>
+    <string name="employees_list_screen_title">Employees list</string>
     <string name="employees_list_screen_description">Employees</string>
+    <string name="fragment_estimated_project_screen">Estimated project</string>
+    <string name="fragment_add_employee_screen">Add employee</string>
 </resources>
