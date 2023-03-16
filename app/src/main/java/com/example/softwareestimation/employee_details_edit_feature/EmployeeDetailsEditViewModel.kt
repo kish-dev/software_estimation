@@ -1,14 +1,16 @@
-package com.example.softwareestimation.employee_details_edit
+package com.example.softwareestimation.employee_details_edit_feature
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.softwareestimation.data.db.employees.Employee
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class EmployeeDetailsEditViewModel @Inject constructor(
     private val useCase: EmployeeDetailsEditInteractor
 ) : ViewModel() {
@@ -35,6 +37,12 @@ class EmployeeDetailsEditViewModel @Inject constructor(
             val employee = useCase.getEmployee(guid) ?: return@launch
 
             _employee.emit(employee)
+        }
+    }
+
+    fun updateEmployee(employee: Employee) {
+        viewModelScope.launch(handler) {
+            useCase.updateEmployee(employee)
         }
     }
 }

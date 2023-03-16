@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.softwareestimation.R
 import com.example.softwareestimation.databinding.FragmentAllEmployeesBinding
 import com.example.softwareestimation.employee_details_feature.EmployeeDetailsFragment
+import com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -31,12 +33,14 @@ class AllEmployeesFragment : Fragment() {
     private val allEmployeesAdapter = AllEmployeesAdapter(
         listener = object : AllEmployeesAdapter.AllEmployeesViewHolderListener {
             override fun onEmployeeClick(position: Int, holder: AllEmployeesViewHolder, id: String) {
-                val employeeDetails = EmployeeDetailsFragment.newInstance(id)
+                holder.employee?.let {
+                    val bundle = bundleOf(EmployeeDetailsFragment.EMPLOYEE_ID to it.guid)
 
-                requireActivity().supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.nav_host_container, employeeDetails)
-                    .commit()
+                    findNavController().navigate(
+                        R.id.action_allEmployeesFragment_to_employeeDetailsFragment,
+                        bundle
+                    )
+                }
             }
         }
     )

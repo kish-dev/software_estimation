@@ -3,12 +3,14 @@ package com.example.softwareestimation.employee_details_feature
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.softwareestimation.data.db.employees.Employee
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class EmployeeDetailsViewModel @Inject constructor(
     private val useCase: EmployeeDetailsInteractor
 ) : ViewModel() {

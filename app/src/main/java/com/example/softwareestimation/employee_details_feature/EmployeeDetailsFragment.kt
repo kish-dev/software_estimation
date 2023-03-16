@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -57,6 +58,7 @@ class EmployeeDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initObservers()
         initViews()
+        employeeId?.let { viewModel.getEmployee(it) }
     }
 
     private fun initViews() {
@@ -82,6 +84,14 @@ class EmployeeDetailsFragment : Fragment() {
                         employeeDetailsName.text = employee.name
                         employeeDetailsSurname.text = employee.surname
                         specAdapter.submitList(employee.specializations)
+                        employeeDetailsEditButton.setOnClickListener {
+                            val bundle = bundleOf(EMPLOYEE_ID to employee.guid)
+
+                            findNavController().navigate(
+                                R.id.action_employeeDetailsFragment_to_employeeDetailsEditFragment,
+                                bundle
+                            )
+                        }
                     }
                 }
             }
@@ -90,17 +100,7 @@ class EmployeeDetailsFragment : Fragment() {
     }
 
     companion object {
-
-        private const val EMPLOYEE_ID = "employee_id"
-
-        @JvmStatic
-        fun newInstance(employeeId: String): Fragment {
-            return EmployeeDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(EMPLOYEE_ID, employeeId)
-                }
-            }
-        }
+        const val EMPLOYEE_ID = "employeeId"
     }
 
     override fun onDestroyView() {

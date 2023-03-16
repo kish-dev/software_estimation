@@ -3,38 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".employee_details_feature.EmployeeDetailsFragment">
+    tools:context=".employee_details_edit_feature.EmployeeDetailsEditFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/employee_details__surname"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/employee_details_edit__surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/background_black_stroke"
             android:ellipsize="end"
+            android:textAppearance="@style/UsualText.Title"
             android:maxLines="1"
             android:padding="16dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/employee_details__name"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/employee_details_edit__name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/background_black_stroke"
+            android:textAppearance="@style/UsualText.Title"
             android:ellipsize="end"
             android:maxLines="1"
             android:padding="16dp" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/employee_details__add_spec"
+            android:id="@+id/employee_details_edit__add_spec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -44,14 +46,14 @@
             android:text="@string/add_spec" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/employee_details__spec_rv"
+            android:id="@+id/employee_details_edit__spec_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/employee_details__add_busy"
+            android:id="@+id/employee_details_edit__add_busy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -61,11 +63,22 @@
             android:text="@string/add_busy" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/employee_details__date_rv"
+            android:id="@+id/employee_details_edit__date_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/employee_details_edit__save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/background_lil_purple"
+            android:padding="16dp"
+            android:text="@string/save" />
+
 
     </LinearLayout>
 

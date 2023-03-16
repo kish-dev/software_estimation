@@ -71,4 +71,7 @@
     <string name="employees_list_screen_description">Employees</string>
     <string name="fragment_estimated_project_screen">Estimated project</string>
     <string name="fragment_add_employee_screen">Add employee</string>
+    <string name="spec">Specializations</string>
+    <string name="busy">Busies</string>
+    <string name="save">save</string>
 </resources>

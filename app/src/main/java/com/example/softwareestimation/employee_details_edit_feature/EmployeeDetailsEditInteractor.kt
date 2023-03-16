@@ -1,4 +1,4 @@
-package com.example.softwareestimation.employee_details_edit
+package com.example.softwareestimation.employee_details_edit_feature
 
 import com.example.softwareestimation.data.db.employees.Employee
 import javax.inject.Inject
@@ -8,11 +8,14 @@ class EmployeeDetailsEditInteractor @Inject constructor(
 ) : EmployeeDetailsEditUseCase {
 
     override suspend fun getEmployee(guid: String?): Employee? {
-        if (guid == null || guid.isBlank()) {
-            return null
+        return if (guid == null || guid.isBlank()) {
+            null
         } else {
-            return repository.getEmployee(guid)
+            repository.getEmployee(guid)
         }
     }
+
+    override suspend fun updateEmployee(employee: Employee) =
+        repository.updateEmployee(employee)
 
 }

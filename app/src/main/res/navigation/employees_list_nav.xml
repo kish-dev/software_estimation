@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_allEmployeesFragment_to_addEmployeeFragment"
             app:destination="@id/addEmployeeFragment" />
+        <action
+            android:id="@+id/action_allEmployeesFragment_to_employeeDetailsFragment"
+            app:destination="@id/employeeDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEmployeeFragment"
@@ -21,5 +24,33 @@
         <action
             android:id="@+id/action_addEmployeeFragment_to_allEmployeesFragment"
             app:destination="@id/allEmployeesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeDetailsFragment"
+        android:name="com.example.softwareestimation.employee_details_feature.EmployeeDetailsFragment"
+        android:label="fragment_employee_details"
+        tools:layout="@layout/fragment_employee_details" >
+        <argument
+            android:name="employeeId"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_employeeDetailsFragment_to_employeeDetailsEditFragment"
+            app:destination="@id/employeeDetailsEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeDetailsEditFragment"
+        android:name="com.example.softwareestimation.employee_details_edit_feature.EmployeeDetailsEditFragment"
+        android:label="fragment_employee_details_edit"
+        tools:layout="@layout/fragment_employee_details_edit" >
+        <argument
+            android:name="employeeId"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_employeeDetailsEditFragment_to_employeeDetailsFragment"
+            app:destination="@id/employeeDetailsFragment" />
     </fragment>
 </navigation>
