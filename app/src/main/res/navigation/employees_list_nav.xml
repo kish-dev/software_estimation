@@ -51,6 +51,8 @@
             app:nullable="true" />
         <action
             android:id="@+id/action_employeeDetailsEditFragment_to_employeeDetailsFragment"
-            app:destination="@id/employeeDetailsFragment" />
+            app:destination="@id/employeeDetailsFragment"
+            app:popUpTo="@id/employeeDetailsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
