@@ -16,4 +16,7 @@ interface EmployeeDao {
 
     @Query("SELECT * FROM employees order by name, surname")
     suspend fun getAllEmployees(): List<Employee>
+
+    @Query("SELECT * FROM employees WHERE guid = :guid LIMIT 1")
+    suspend fun getEmployee(guid: String): Employee?
 }

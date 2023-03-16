@@ -1,48 +1,59 @@
-package com.example.softwareestimation.all_employees_feature
+package com.example.softwareestimation.employee_details_feature.specs
 
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.softwareestimation.R
-import com.example.softwareestimation.data.db.employees.Employee
+import com.example.softwareestimation.data.db.employees.EmployeeSpecialization
 import com.example.softwareestimation.data.db.employees.EmployeeSpheres
+import com.example.softwareestimation.data.db.employees.EmployeesLevels
 
-class AllEmployeesViewHolder(
+class EmployeeDetailsSpecializationViewHolder(
     private val itemView: View,
-    private val listener: AllEmployeesAdapter.AllEmployeesViewHolderListener
 ) : RecyclerView.ViewHolder(itemView) {
 
-    var name: AppCompatTextView? = null
-    var surname: AppCompatTextView? = null
     var image: AppCompatImageView? = null
-    var layout: ConstraintLayout? = null
-    var employee: Employee? = null
+    var level: AppCompatTextView? = null
+    var spec: EmployeeSpecialization? = null
 
     init {
         itemView.apply {
-            name = findViewById(R.id.all_employees__employee_name)
-            surname = findViewById(R.id.all_employees__employee_surname)
-            image = findViewById(R.id.all_employees__employee_image)
-            layout = findViewById(R.id.all_employees__layout)
+            image = findViewById(R.id.employee_details__spec_image)
+            level = findViewById(R.id.employee_details__level)
         }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    fun bind(bindEmployee: Employee, position: Int) {
+    fun bind(bindSpec: EmployeeSpecialization) {
 
-        layout?.setOnClickListener {
-            listener.onEmployeeClick(position, this, bindEmployee.guid)
-        }
+        spec = bindSpec
 
-        employee = bindEmployee
-        name?.text = bindEmployee.name
-        surname?.text = bindEmployee.surname
+        level?.text =
 
-        when (bindEmployee.specializations.firstOrNull()?.sphere) {
-            null -> {}
+            itemView.context.getString(
+                when (bindSpec.levels) {
+                    EmployeesLevels.INTERN -> {
+                        R.string.intern_level
+                    }
+                    EmployeesLevels.JUNIOR -> {
+                        R.string.junior_level
+                    }
+                    EmployeesLevels.MIDDLE -> {
+                        R.string.middle_level
+                    }
+                    EmployeesLevels.SENIOR -> {
+                        R.string.senior_level
+                    }
+                    EmployeesLevels.LEAD -> {
+                        R.string.lead_level
+                    }
+                }
+            )
+
+
+        when (bindSpec.sphere) {
             EmployeeSpheres.ANALYTIC -> {
                 image?.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_analytic))
             }
@@ -64,6 +75,7 @@ class AllEmployeesViewHolder(
             EmployeeSpheres.WEB_DEVELOPER -> {
                 image?.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_web))
             }
+
         }
     }
 }

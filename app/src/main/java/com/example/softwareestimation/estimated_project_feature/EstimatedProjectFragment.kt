@@ -22,7 +22,6 @@ import com.github.mikephil.charting.data.PieEntry
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
 class EstimatedProjectFragment : Fragment() {
 
@@ -45,6 +44,7 @@ class EstimatedProjectFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentEstimatedProjectBinding.inflate(inflater, container, false)
+
 
         return binding.root
     }
@@ -233,15 +233,7 @@ class EstimatedProjectFragment : Fragment() {
 
 
     companion object {
-        private const val PROJECT_NAME = "project_name"
-
-        @JvmStatic
-        fun newInstance(productId: String): EstimatedProjectFragment =
-            EstimatedProjectFragment().apply {
-                arguments = Bundle().apply {
-                    putString(PROJECT_NAME, productId)
-                }
-            }
+        const val PROJECT_NAME = "projectName"
     }
 
 }

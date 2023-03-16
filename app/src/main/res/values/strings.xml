@@ -67,10 +67,12 @@
     <string name="employees_list_screen_description">Employees</string>
     <string name="fragment_estimated_project_screen">Estimated project</string>
     <string name="fragment_add_employee_screen">Add employee</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="project_types">
         <item>Mobile app</item>
         <item>Web app</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="numeric_values" translatable="false">
         <item>0</item>
         <item>1</item>

@@ -17,5 +17,11 @@
         android:id="@+id/estimatedProjectFragment"
         android:name="com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment"
         android:label="@string/fragment_estimated_project_screen"
-        tools:layout="@layout/fragment_estimated_project" />
+        tools:layout="@layout/fragment_estimated_project" >
+        <argument
+            android:name="projectName"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true" />
+    </fragment>
 </navigation>

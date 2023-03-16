@@ -127,22 +127,6 @@ class AddEmployeeFragment : Fragment() {
 
             )
 
-//        MaterialAlertDialogBuilder(requireContext(),)
-//            .setMessage(resources.getString(R.string.specs))
-//            .setNegativeButton(resources.getString(R.string.decline)) { dialog, which ->
-//                // Respond to negative button press
-//            }
-//            .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
-//                // Respond to positive button press
-//            }
-//            .setSingleChoiceItems(levels, 1) {dialog, which ->
-//
-//            }
-//            .setSingleChoiceItems(spheres, 1) {dialog, which ->
-//
-//            }
-//            .show()
-
         val singleItems = arrayOf("Item 1", "Item 2", "Item 3")
         val checkedItem = 1
 

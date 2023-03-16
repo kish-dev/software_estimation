@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.softwareestimation.R
 import com.example.softwareestimation.data.db.ProjectTypes
 import com.example.softwareestimation.databinding.FragmentFillFormBinding
-import com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment
+import com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment.Companion.PROJECT_NAME
 import com.example.softwareestimation.fill_project_form_feature.lists.enter.EnterParametersAdapter
 import com.example.softwareestimation.fill_project_form_feature.lists.enter.enter_param_cell.EnterParameterCellType
 import com.example.softwareestimation.fill_project_form_feature.lists.enter.enter_param_cell.EnterParametersCellAdapter
@@ -183,8 +184,11 @@ class FillFormFragment : Fragment() {
                         mainSystemCharacteristics = mainCharacteristicsAdapter.currentList,
                     )
                     viewModel.fillForm(functionPoint) {
+                        val bundle = bundleOf(PROJECT_NAME to projectName)
+
                         findNavController().navigate(
-                            R.id.action_fillFormFragment_to_estimatedProjectFragment
+                            R.id.action_fillFormFragment_to_estimatedProjectFragment,
+                            bundle
                         )
                     }
                 }

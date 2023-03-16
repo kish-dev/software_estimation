@@ -14,7 +14,7 @@ class AllEmployeesAdapter(
 ) {
 
     interface AllEmployeesViewHolderListener {
-        fun onEmployeeClick(position: Int, holder: AllEmployeesViewHolder)
+        fun onEmployeeClick(position: Int, holder: AllEmployeesViewHolder, employeeId: String)
     }
 
     private class EmployeeProjectDiffUtil : DiffUtil.ItemCallback<Employee>() {

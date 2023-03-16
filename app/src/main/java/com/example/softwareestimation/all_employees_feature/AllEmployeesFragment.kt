@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.softwareestimation.R
 import com.example.softwareestimation.databinding.FragmentAllEmployeesBinding
+import com.example.softwareestimation.employee_details_feature.EmployeeDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -29,8 +30,13 @@ class AllEmployeesFragment : Fragment() {
 
     private val allEmployeesAdapter = AllEmployeesAdapter(
         listener = object : AllEmployeesAdapter.AllEmployeesViewHolderListener {
-            override fun onEmployeeClick(position: Int, holder: AllEmployeesViewHolder) {
-                //TODO add navigation to screen editEmployeesFragment/employeeFragment
+            override fun onEmployeeClick(position: Int, holder: AllEmployeesViewHolder, id: String) {
+                val employeeDetails = EmployeeDetailsFragment.newInstance(id)
+
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.nav_host_container, employeeDetails)
+                    .commit()
             }
         }
     )
@@ -55,7 +61,6 @@ class AllEmployeesFragment : Fragment() {
     private fun initViews() {
         with(binding) {
 
-            //TODO add AddEmployeeFragment
             allEmployeesAddEmployee.setOnClickListener {
                 findNavController().navigate(
                     R.id.action_allEmployeesFragment_to_addEmployeeFragment
