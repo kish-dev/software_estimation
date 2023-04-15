@@ -67,15 +67,16 @@
     <string name="employees_list_screen_description">Employees</string>
     <string name="fragment_estimated_project_screen">Estimated project</string>
     <string name="fragment_add_employee_screen">Add employee</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="spec">Specializations</string>
     <string name="busy">Busies</string>
-    <string name="save">save</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="level_spec">Level</string>
     <string-array name="project_types">
         <item>Mobile app</item>
         <item>Web app</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="numeric_values" translatable="false">
         <item>0</item>
         <item>1</item>
@@ -83,5 +84,21 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+    </string-array>
+    <string-array name="levels_spinner">
+        <item>Intern</item>
+        <item>Junior</item>
+        <item>Middle</item>
+        <item>Senior</item>
+        <item>Lead</item>
+    </string-array>
+    <string-array name="specs_spinner">
+        <item>Analytic</item>
+        <item>Android Developer</item>
+        <item>Backend Developer</item>
+        <item>Ios Developer</item>
+        <item>Project Manager</item>
+        <item>Tester</item>
+        <item>Web Developer</item>
     </string-array>
 </resources>

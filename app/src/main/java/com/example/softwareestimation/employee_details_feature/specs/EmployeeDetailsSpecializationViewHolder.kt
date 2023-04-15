@@ -33,7 +33,7 @@ class EmployeeDetailsSpecializationViewHolder(
         level?.text =
 
             itemView.context.getString(
-                when (bindSpec.levels) {
+                when (bindSpec.level) {
                     EmployeesLevels.INTERN -> {
                         R.string.intern_level
                     }

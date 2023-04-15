@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/add_specialization_dialog__title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_spec"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textAppearance="@style/UsualText.Title"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
+        />
+
+    <Spinner
+        android:id="@+id/add_specialization_dialog__add_spheres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/add_specialization_dialog__add_levels"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_specialization_dialog__title" />
+
+    <Spinner
+        android:id="@+id/add_specialization_dialog__add_levels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_specialization_dialog__add_spheres"
+        app:layout_constraintTop_toBottomOf="@+id/add_specialization_dialog__title"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_specialization_dialog__cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:background="@drawable/background_red_rounded"
+        android:text="@string/cancel"
+        android:textAppearance="@style/UsualText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_specialization_dialog__ok_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_specialization_dialog__add_spheres" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_specialization_dialog__ok_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:background="@drawable/background_green_rounded"
+        android:text="@string/ok"
+        android:textAppearance="@style/UsualText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_specialization_dialog__cancel_button"
+        app:layout_constraintTop_toBottomOf="@+id/add_specialization_dialog__add_spheres" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

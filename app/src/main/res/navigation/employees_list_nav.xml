@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_addEmployeeFragment_to_allEmployeesFragment"
             app:destination="@id/allEmployeesFragment" />
+        <action
+            android:id="@+id/action_addEmployeeFragment_to_addSpecializationDialog"
+            app:destination="@id/addSpecializationDialog" />
     </fragment>
     <fragment
         android:id="@+id/employeeDetailsFragment"
@@ -55,4 +58,8 @@
             app:popUpTo="@id/employeeDetailsFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <dialog
+        android:id="@+id/addSpecializationDialog"
+        android:name="com.example.softwareestimation.add_employee_feature.add_specialization_dialog.AddSpecializationDialog"
+        android:label="AddSpecializationDialog" />
 </navigation>

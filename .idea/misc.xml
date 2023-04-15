@@ -5,13 +5,16 @@
       <map>
         <entry key="app/src/main/res/drawable/background_all_projects_item.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/background_black_stroke.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/background_green_rounded.xml" value="0.1685" />
         <entry key="app/src/main/res/drawable/background_purple_rounded.xml" value="0.1855" />
+        <entry key="app/src/main/res/drawable/background_red_rounded.xml" value="0.1685" />
         <entry key="app/src/main/res/drawable/background_search.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/ic_analytic.xml" value="0.1445" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.134" />
         <entry key="app/src/main/res/drawable/ic_list_black.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_plus_black.xml" value="0.107" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22780797101449277" />
+        <entry key="app/src/main/res/layout/add_employee__add_spec_dialog.xml" value="0.33889617919921877" />
         <entry key="app/src/main/res/layout/add_employee_spec_cell_item.xml" value="0.3328804347826087" />
         <entry key="app/src/main/res/layout/all_employees_cell_item.xml" value="0.3509963768115942" />
         <entry key="app/src/main/res/layout/all_projects_cell_item.xml" value="0.32518115942028986" />

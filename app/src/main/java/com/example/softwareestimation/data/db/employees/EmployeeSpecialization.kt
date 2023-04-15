@@ -2,5 +2,5 @@ package com.example.softwareestimation.data.db.employees
 
 data class EmployeeSpecialization(
     val sphere: EmployeeSpheres,
-    val levels: EmployeesLevels,
+    val level: EmployeesLevels,
 )

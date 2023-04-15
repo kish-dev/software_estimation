@@ -21,9 +21,9 @@ class AddEmployeeSpecializationViewHolder(
 
     init {
         itemView.apply {
-            image = findViewById(R.id.add_employee__spec_image)
-            level = findViewById(R.id.add_employee__level)
-            specDelete = findViewById(R.id.add_employee__spec_delete)
+//            image = findViewById(R.id.add_employee__spec_image)
+//            level = findViewById(R.id.add_employee__level)
+//            specDelete = findViewById(R.id.add_employee__spec_delete)
         }
     }
 
@@ -34,7 +34,7 @@ class AddEmployeeSpecializationViewHolder(
         level?.text =
 
             itemView.context.getString(
-                when (bindSpec.levels) {
+                when (bindSpec.level) {
                     EmployeesLevels.INTERN -> {
                         R.string.intern_level
                     }

@@ -2,6 +2,7 @@ package com.example.softwareestimation.add_employee_feature
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.softwareestimation.data.db.employees.EmployeeSpecialization
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,10 +19,21 @@ class AddEmployeeViewModel @Inject constructor(
 
     var employee: StateFlow<EmployeeVo> = _employee
 
+    private val _specialization: MutableStateFlow<EmployeeSpecialization?> =
+        MutableStateFlow(null)
+
+    var specialization: StateFlow<EmployeeSpecialization?> = _specialization
+
     fun addEmployee(employeeVo: EmployeeVo, lambda: () -> Unit) {
         viewModelScope.launch {
             addEmployeeUseCase.addEmployee(employeeVo.toDomain())
             lambda.invoke()
+        }
+    }
+
+    fun addSpecialization(specialization: EmployeeSpecialization) {
+        viewModelScope.launch {
+            _specialization.emit(specialization)
         }
     }
 
