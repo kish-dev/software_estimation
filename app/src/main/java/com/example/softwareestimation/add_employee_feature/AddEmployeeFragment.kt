@@ -5,27 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.softwareestimation.R
-import com.example.softwareestimation.add_employee_feature.add_specialization_dialog.AddSpecializationDialog
 import com.example.softwareestimation.add_employee_feature.specs.AddEmployeeSpecializationAdapter
-import com.example.softwareestimation.all_employees_feature.AllEmployeesFragment
-import com.example.softwareestimation.data.db.ProjectTypes
 import com.example.softwareestimation.data.db.employees.EmployeeSpecialization
-import com.example.softwareestimation.data.db.employees.EmployeeSpheres
-import com.example.softwareestimation.data.db.employees.EmployeesLevels
 import com.example.softwareestimation.databinding.FragmentAddEmployeeBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -52,7 +41,6 @@ class AddEmployeeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentAddEmployeeBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -113,7 +101,7 @@ class AddEmployeeFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                viewModel.specialization.collect { spec ->
+                viewModel.specializations.collect { spec ->
                     with(binding) {
                         spec?.let { notNullSpec ->
                             val list = addSpecAdapter.currentList.toMutableList()

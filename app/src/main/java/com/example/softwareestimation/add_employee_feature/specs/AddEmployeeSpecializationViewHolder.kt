@@ -16,20 +16,20 @@ class AddEmployeeSpecializationViewHolder(
 
     var image: AppCompatImageView? = null
     var level: AppCompatTextView? = null
-    var specDelete: AppCompatTextView? = null
-    var spec: EmployeeSpecialization? = null
+    var specDelete: AppCompatImageView? = null
+    var employeeSpecialization: EmployeeSpecialization? = null
 
     init {
         itemView.apply {
-//            image = findViewById(R.id.add_employee__spec_image)
-//            level = findViewById(R.id.add_employee__level)
-//            specDelete = findViewById(R.id.add_employee__spec_delete)
+            image = findViewById(R.id.add_employee__spec_image)
+            level = findViewById(R.id.add_employee__level)
+            specDelete = findViewById(R.id.add_employee__spec_delete)
         }
     }
 
     fun bind(bindSpec: EmployeeSpecialization, position: Int) {
 
-        spec = bindSpec
+        employeeSpecialization = bindSpec
 
         level?.text =
 

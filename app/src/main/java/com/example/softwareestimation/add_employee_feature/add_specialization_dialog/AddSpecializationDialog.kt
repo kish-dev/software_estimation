@@ -11,7 +11,6 @@ import android.widget.Spinner
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.example.softwareestimation.add_employee_feature.AddEmployeeViewModel
 import com.example.softwareestimation.data.db.employees.EmployeeSpecialization
 import com.example.softwareestimation.data.db.employees.EmployeeSpheres
@@ -30,14 +29,11 @@ class AddSpecializationDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val v: View = inflater.inflate(
+        return inflater.inflate(
             com.example.softwareestimation.R.layout.add_employee__add_spec_dialog,
             container,
             false
         )
-
-
-        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

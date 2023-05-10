@@ -19,10 +19,10 @@ class AddEmployeeViewModel @Inject constructor(
 
     var employee: StateFlow<EmployeeVo> = _employee
 
-    private val _specialization: MutableStateFlow<EmployeeSpecialization?> =
+    private val _specializations: MutableStateFlow<EmployeeSpecialization?> =
         MutableStateFlow(null)
 
-    var specialization: StateFlow<EmployeeSpecialization?> = _specialization
+    var specializations: StateFlow<EmployeeSpecialization?> = _specializations
 
     fun addEmployee(employeeVo: EmployeeVo, lambda: () -> Unit) {
         viewModelScope.launch {
@@ -33,30 +33,32 @@ class AddEmployeeViewModel @Inject constructor(
 
     fun addSpecialization(specialization: EmployeeSpecialization) {
         viewModelScope.launch {
-            _specialization.emit(specialization)
-        }
-    }
-
-    //TODO подумать как удалять (пока что можно брать список с адаптера и удалять по индексу,
-    //TODO либо сохранять все во вьюмодельку (так лучше), удалять оттуда же и обновляться
-
-    fun updateViewModelState(employeeVo: EmployeeVo) {
-        viewModelScope.launch {
-            _employee.emit(employeeVo)
+            _specializations.emit(specialization)
+            val specs = _employee.value.specializations.toMutableList()
+            if(!specs.contains(specialization)) {
+                specs.add(specialization)
+                _employee.emit(
+                    EmployeeVo(
+                        name = _employee.value.name,
+                        surname = _employee.value.surname,
+                        specializations = specs
+                    )
+                )
+            }
         }
     }
 
     fun deleteEmployeeSpec(position: Int) {
         viewModelScope.launch {
-            val newEmployeeSpecs = _employee
+            val newSpecs = _employee
                 .value.specializations.toMutableList()
-            newEmployeeSpecs.removeAt(position)
+            newSpecs.removeAt(position)
 
             _employee.emit(
                 EmployeeVo(
                     name = _employee.value.name,
                     surname = _employee.value.surname,
-                    specializations = newEmployeeSpecs
+                    specializations = newSpecs
                 )
             )
         }
