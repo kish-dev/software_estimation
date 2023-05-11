@@ -21,6 +21,16 @@ class AddEmployeeViewModel @Inject constructor(
     var employee: StateFlow<EmployeeVo> = _employee
 
 
+    private val _listSpecializations: MutableStateFlow<List<EmployeeSpecialization>> =
+        MutableStateFlow(emptyList())
+    var listSpecialization: StateFlow<List<EmployeeSpecialization>> = _listSpecializations
+
+
+    private val _listBusiness: MutableStateFlow<List<EmployeeBusiness>> =
+        MutableStateFlow(emptyList())
+    var listBusiness: StateFlow<List<EmployeeBusiness>> = _listBusiness
+
+
     private val _specializations: MutableStateFlow<EmployeeSpecialization?> =
         MutableStateFlow(null)
     var specializations: StateFlow<EmployeeSpecialization?> = _specializations
@@ -41,17 +51,10 @@ class AddEmployeeViewModel @Inject constructor(
     fun addSpecialization(specialization: EmployeeSpecialization) {
         viewModelScope.launch {
             _specializations.emit(specialization)
-            val specs = _employee.value.specializations.toMutableList()
-            if(!specs.contains(specialization)) {
+            val specs = _listSpecializations.value.toMutableList()
+            if (!specs.contains(specialization)) {
                 specs.add(specialization)
-                _employee.emit(
-                    EmployeeVo(
-                        name = _employee.value.name,
-                        surname = _employee.value.surname,
-                        specializations = specs,
-                        busies = _employee.value.busies
-                    )
-                )
+                _listSpecializations.emit(specs)
             }
         }
     }
@@ -59,52 +62,29 @@ class AddEmployeeViewModel @Inject constructor(
     fun addBusy(business: EmployeeBusiness) {
         viewModelScope.launch {
             _busies.emit(business)
-            val newBusies = _employee.value.busies.toMutableList()
-            if(!newBusies.contains(business)) {
+            val newBusies = _listBusiness.value.toMutableList()
+            if (!newBusies.contains(business)) {
                 newBusies.add(business)
-                _employee.emit(
-                    EmployeeVo(
-                        name = _employee.value.name,
-                        surname = _employee.value.surname,
-                        specializations = _employee.value.specializations,
-                        busies = newBusies
-                    )
-                )
+                _listBusiness.emit(newBusies)
             }
         }
     }
 
     fun deleteEmployeeSpec(position: Int) {
         viewModelScope.launch {
-            val newSpecs = _employee
-                .value.specializations.toMutableList()
+            val newSpecs = listSpecialization.value.toMutableList()
             newSpecs.removeAt(position)
 
-            _employee.emit(
-                EmployeeVo(
-                    name = _employee.value.name,
-                    surname = _employee.value.surname,
-                    specializations = newSpecs,
-                    busies = _employee.value.busies
-                )
-            )
+            _listSpecializations.emit(newSpecs)
         }
     }
 
     fun deleteEmployeeBusies(position: Int) {
         viewModelScope.launch {
-            val newBusies = _employee
-                .value.busies.toMutableList()
+            val newBusies = _listBusiness.value.toMutableList()
             newBusies.removeAt(position)
 
-            _employee.emit(
-                EmployeeVo(
-                    name = _employee.value.name,
-                    surname = _employee.value.surname,
-                    specializations = _employee.value.specializations,
-                    busies = newBusies
-                )
-            )
+            _listBusiness.emit(newBusies)
         }
     }
 }

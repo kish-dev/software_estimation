@@ -81,7 +81,7 @@ class AddEmployeeFragment : Fragment() {
                     )
             }
 
-            val dividerItemDecoration =  DividerItemDecoration(this@AddEmployeeFragment.requireContext(), RecyclerView.VERTICAL)
+            val dividerItemDecoration =  DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
                 .also {
                     it.setDrawable(resources.getDrawable(R.drawable.cell_item_divider))
                 }
@@ -133,8 +133,26 @@ class AddEmployeeFragment : Fragment() {
                     with(binding) {
                         addEmployeeName.setText(employee.name)
                         addEmployeeSurname.setText(employee.surname)
-                        addSpecAdapter.submitList(employee.specializations)
-                        addBusyAdapter.submitList(employee.busies)
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.listBusiness.collect { businesses ->
+                    with(binding) {
+                        addBusyAdapter.submitList(businesses)
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.listSpecialization.collect { specs ->
+                    with(binding) {
+                        addSpecAdapter.submitList(specs)
                     }
                 }
             }

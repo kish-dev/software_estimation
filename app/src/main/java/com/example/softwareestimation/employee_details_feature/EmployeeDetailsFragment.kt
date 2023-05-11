@@ -11,13 +11,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.softwareestimation.R
 import com.example.softwareestimation.add_employee_feature.EmployeeVo
 import com.example.softwareestimation.add_employee_feature.specs.AddEmployeeSpecializationAdapter
 import com.example.softwareestimation.data.db.employees.EmployeeSpheres
 import com.example.softwareestimation.databinding.FragmentEmployeeDetailsBinding
 import com.example.softwareestimation.databinding.FragmentEstimatedProjectBinding
+import com.example.softwareestimation.employee_details_feature.busies.EmployeeDetailsBusiesAdapter
 import com.example.softwareestimation.employee_details_feature.specs.EmployeeDetailsSpecializationAdapter
 import com.example.softwareestimation.employee_details_feature.specs.EmployeeDetailsSpecializationViewHolder
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment
@@ -35,6 +38,8 @@ class EmployeeDetailsFragment : Fragment() {
     private val viewModel: EmployeeDetailsViewModel by viewModels()
 
     private val specAdapter = EmployeeDetailsSpecializationAdapter()
+
+    private val busiesAdapter = EmployeeDetailsBusiesAdapter()
 
     private var employeeId: String? = null
 
@@ -73,6 +78,26 @@ class EmployeeDetailsFragment : Fragment() {
                         false
                     )
             }
+
+            employeeDetailsBusyRv.apply {
+                adapter = busiesAdapter
+                layoutManager =
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.VERTICAL,
+                        false
+                    )
+            }
+
+            val dividerItemDecoration =  DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
+                .also {
+                    it.setDrawable(resources.getDrawable(R.drawable.cell_item_divider))
+                }
+
+            employeeDetailsSpecRv.addItemDecoration(dividerItemDecoration)
+
+            employeeDetailsBusyRv.addItemDecoration(dividerItemDecoration)
+
         }
     }
 
@@ -84,6 +109,7 @@ class EmployeeDetailsFragment : Fragment() {
                         employeeDetailsName.text = employee.name
                         employeeDetailsSurname.text = employee.surname
                         specAdapter.submitList(employee.specializations)
+                        busiesAdapter.submitList(employee.busies)
                         employeeDetailsEditButton.setOnClickListener {
                             val bundle = bundleOf(EMPLOYEE_ID to employee.guid)
 

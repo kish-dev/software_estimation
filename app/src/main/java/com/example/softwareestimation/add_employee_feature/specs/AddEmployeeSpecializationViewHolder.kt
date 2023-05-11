@@ -55,13 +55,28 @@ class AddEmployeeSpecializationViewHolder(
 
 
         when (bindSpec.sphere) {
-            EmployeeSpheres.ANALYTIC -> {}
-            EmployeeSpheres.ANDROID_DEVELOPER -> {}
-            EmployeeSpheres.BACKEND_DEVELOPER -> {}
-            EmployeeSpheres.IOS_DEVELOPER -> {}
-            EmployeeSpheres.PROJECT_MANAGER -> {}
-            EmployeeSpheres.TESTER -> {}
-            EmployeeSpheres.WEB_DEVELOPER -> {}
+            EmployeeSpheres.ANALYTIC -> {
+                image?.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_analytic))
+            }
+            EmployeeSpheres.ANDROID_DEVELOPER -> {
+                image?.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_phone))
+            }
+            EmployeeSpheres.BACKEND_DEVELOPER -> {
+                image?.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_backend_dev))
+            }
+            EmployeeSpheres.IOS_DEVELOPER -> {
+                image?.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_phone))
+            }
+            EmployeeSpheres.PROJECT_MANAGER -> {
+                image?.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_manager))
+            }
+            EmployeeSpheres.TESTER -> {
+                image?.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_tester))
+            }
+            EmployeeSpheres.WEB_DEVELOPER -> {
+                image?.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_web))
+            }
+
         }
 
         specDelete?.setOnClickListener {

@@ -17,12 +17,13 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22780797101449277" />
         <entry key="app/src/main/res/layout/add_employee__add_spec_dialog.xml" value="0.33889617919921877" />
         <entry key="app/src/main/res/layout/add_employee__busy_cell_item.xml" value="0.19579533941236069" />
-        <entry key="app/src/main/res/layout/add_employee_spec_cell_item.xml" value="0.3328804347826087" />
+        <entry key="app/src/main/res/layout/add_employee_spec_cell_item.xml" value="0.2553191489361702" />
         <entry key="app/src/main/res/layout/all_employees_cell_item.xml" value="0.3509963768115942" />
         <entry key="app/src/main/res/layout/all_projects_cell_item.xml" value="0.32518115942028986" />
+        <entry key="app/src/main/res/layout/employee_details_busy_cell_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/employee_details_cell_item.xml" value="0.30978260869565216" />
         <entry key="app/src/main/res/layout/employee_details_edit_spec_cell_item.xml" value="0.17685185185185184" />
-        <entry key="app/src/main/res/layout/employee_details_spec_cell_item.xml" value="0.30978260869565216" />
+        <entry key="app/src/main/res/layout/employee_details_spec_cell_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/enter_main_parameter_cell_item.xml" value="0.24094202898550723" />
         <entry key="app/src/main/res/layout/enter_parameter_cell_item.xml" value="0.8026157102723054" />
         <entry key="app/src/main/res/layout/enter_params_view.xml" value="0.2171875" />
