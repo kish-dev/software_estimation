@@ -1,4 +1,4 @@
-package com.example.softwareestimation.add_employee_feature.add_specialization_dialog
+package com.example.softwareestimation.employee_details_edit_feature.add_specialization_dialog
 
 import android.R
 import android.os.Bundle
@@ -11,15 +11,14 @@ import android.widget.Spinner
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import com.example.softwareestimation.add_employee_feature.AddEmployeeViewModel
 import com.example.softwareestimation.data.db.employees.EmployeeSpecialization
 import com.example.softwareestimation.data.db.employees.EmployeeSpheres
 import com.example.softwareestimation.data.db.employees.EmployeesLevels
+import com.example.softwareestimation.employee_details_edit_feature.EmployeeDetailsEditViewModel
 
+class AddSpecializationDialogInEditEmployee : DialogFragment() {
 
-class AddSpecializationDialog : DialogFragment() {
-
-    private val viewModel: AddEmployeeViewModel by activityViewModels()
+    private val viewModel: EmployeeDetailsEditViewModel by activityViewModels()
 
     var chosenSpec: EmployeeSpheres = EmployeeSpheres.ANALYTIC
     var chosenLevel: EmployeesLevels = EmployeesLevels.INTERN
@@ -54,14 +53,14 @@ class AddSpecializationDialog : DialogFragment() {
             view.findViewById(com.example.softwareestimation.R.id.add_specialization_dialog__ok_button)
 
 
-            ArrayAdapter.createFromResource(
-                view.context,
-                com.example.softwareestimation.R.array.specs_spinner,
-                R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-                specSpinner?.adapter = adapter
-            }
+        ArrayAdapter.createFromResource(
+            view.context,
+            com.example.softwareestimation.R.array.specs_spinner,
+            R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+            specSpinner?.adapter = adapter
+        }
 
 
         specSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -109,14 +108,14 @@ class AddSpecializationDialog : DialogFragment() {
 
         }
 
-            ArrayAdapter.createFromResource(
-                view.context,
-                com.example.softwareestimation.R.array.levels_spinner,
-                R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-                levelSpinner?.adapter = adapter
-            }
+        ArrayAdapter.createFromResource(
+            view.context,
+            com.example.softwareestimation.R.array.levels_spinner,
+            R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+            levelSpinner?.adapter = adapter
+        }
 
         levelSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -135,6 +134,7 @@ class AddSpecializationDialog : DialogFragment() {
                     }
                     1 -> {
                         EmployeesLevels.JUNIOR
+
                     }
                     2 -> {
                         EmployeesLevels.MIDDLE

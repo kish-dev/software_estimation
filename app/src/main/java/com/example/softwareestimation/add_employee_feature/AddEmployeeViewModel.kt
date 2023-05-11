@@ -79,7 +79,7 @@ class AddEmployeeViewModel @Inject constructor(
         }
     }
 
-    fun deleteEmployeeBusies(position: Int) {
+    fun deleteEmployeeBusy(position: Int) {
         viewModelScope.launch {
             val newBusies = _listBusiness.value.toMutableList()
             newBusies.removeAt(position)

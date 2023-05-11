@@ -1,4 +1,4 @@
-//package com.example.softwareestimation.employee_details_edit_feature.specs
+//package com.example.softwareestimation.employee_details_edit_feature.busies
 //
 //import android.view.LayoutInflater
 //import android.view.ViewGroup
@@ -6,6 +6,7 @@
 //import androidx.recyclerview.widget.ListAdapter
 //import com.example.softwareestimation.R
 //import com.example.softwareestimation.data.db.employees.EmployeeSpecialization
+//import com.example.softwareestimation.employee_details_edit_feature.specs.EmployeeDetailsEditSpecializationViewHolder
 //
 //class EmployeeDetailsEditSpecializationAdapter(
 //) : ListAdapter<EmployeeSpecialization, EmployeeDetailsEditSpecializationViewHolder>(

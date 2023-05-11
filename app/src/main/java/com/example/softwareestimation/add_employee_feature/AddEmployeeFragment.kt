@@ -1,8 +1,6 @@
 package com.example.softwareestimation.add_employee_feature
 
-import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +17,6 @@ import com.example.softwareestimation.R
 import com.example.softwareestimation.add_employee_feature.busies.AddEmployeeBusiesAdapter
 import com.example.softwareestimation.add_employee_feature.specs.AddEmployeeSpecializationAdapter
 import com.example.softwareestimation.data.db.employees.EmployeeBusiness
-import com.example.softwareestimation.data.db.employees.EmployeeSpecialization
 import com.example.softwareestimation.databinding.FragmentAddEmployeeBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +45,7 @@ class AddEmployeeFragment : Fragment() {
     private val addBusyAdapter = AddEmployeeBusiesAdapter(
         listener = object : AddEmployeeBusiesAdapter.AddEmployeeViewHolderListener {
             override fun onDeleteButtonClick(position: Int) {
-                viewModel.deleteEmployeeBusies(position)
+                viewModel.deleteEmployeeBusy(position)
             }
         }
     )
