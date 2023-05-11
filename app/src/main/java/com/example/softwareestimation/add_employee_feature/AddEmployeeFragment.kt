@@ -1,5 +1,6 @@
 package com.example.softwareestimation.add_employee_feature
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,7 +12,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.softwareestimation.R
 import com.example.softwareestimation.add_employee_feature.busies.AddEmployeeBusiesAdapter
 import com.example.softwareestimation.add_employee_feature.specs.AddEmployeeSpecializationAdapter
@@ -77,6 +80,15 @@ class AddEmployeeFragment : Fragment() {
                         false
                     )
             }
+
+            val dividerItemDecoration =  DividerItemDecoration(this@AddEmployeeFragment.requireContext(), RecyclerView.VERTICAL)
+                .also {
+                    it.setDrawable(resources.getDrawable(R.drawable.cell_item_divider))
+                }
+
+            addEmployeeSpecRv.addItemDecoration(dividerItemDecoration)
+
+            addEmployeeBusyRv.addItemDecoration(dividerItemDecoration)
 
             addEmployeeBusyRv.apply {
                 adapter = addBusyAdapter

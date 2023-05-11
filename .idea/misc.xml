@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/background_purple_rounded.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/background_red_rounded.xml" value="0.1685" />
         <entry key="app/src/main/res/drawable/background_search.xml" value="0.1855" />
+        <entry key="app/src/main/res/drawable/cell_item_divider.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_analytic.xml" value="0.1445" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.134" />
         <entry key="app/src/main/res/drawable/ic_list_black.xml" value="0.1" />
