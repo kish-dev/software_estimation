@@ -1,6 +1,7 @@
 package com.example.softwareestimation.add_employee_feature
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +13,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.softwareestimation.R
+import com.example.softwareestimation.add_employee_feature.busies.AddEmployeeBusiesAdapter
 import com.example.softwareestimation.add_employee_feature.specs.AddEmployeeSpecializationAdapter
+import com.example.softwareestimation.data.db.employees.EmployeeBusiness
 import com.example.softwareestimation.data.db.employees.EmployeeSpecialization
 import com.example.softwareestimation.databinding.FragmentAddEmployeeBinding
+import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.util.*
 
 @AndroidEntryPoint
 class AddEmployeeFragment : Fragment() {
@@ -33,6 +38,14 @@ class AddEmployeeFragment : Fragment() {
                 position: Int,
             ) {
                 viewModel.deleteEmployeeSpec(position)
+            }
+        }
+    )
+
+    private val addBusyAdapter = AddEmployeeBusiesAdapter(
+        listener = object : AddEmployeeBusiesAdapter.AddEmployeeViewHolderListener {
+            override fun onDeleteButtonClick(position: Int) {
+                viewModel.deleteEmployeeBusies(position)
             }
         }
     )
@@ -65,12 +78,23 @@ class AddEmployeeFragment : Fragment() {
                     )
             }
 
+            addEmployeeBusyRv.apply {
+                adapter = addBusyAdapter
+                layoutManager =
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.VERTICAL,
+                        false
+                    )
+            }
+
             addEmployeeReady.setOnClickListener {
                 viewModel.addEmployee(
                     EmployeeVo(
                         name = addEmployeeName.text.toString(),
                         surname = addEmployeeSurname.text.toString(),
-                        specializations = addSpecAdapter.currentList
+                        specializations = addSpecAdapter.currentList,
+                        busies = addBusyAdapter.currentList
                     )
                 ) {
                     findNavController().navigate(
@@ -81,6 +105,10 @@ class AddEmployeeFragment : Fragment() {
 
             addEmployeeAddSpec.setOnClickListener {
                 createAddSpecDialog()
+            }
+
+            addEmployeeAddBusy.setOnClickListener {
+                createAddBusyDialog()
             }
 
         }
@@ -94,6 +122,7 @@ class AddEmployeeFragment : Fragment() {
                         addEmployeeName.setText(employee.name)
                         addEmployeeSurname.setText(employee.surname)
                         addSpecAdapter.submitList(employee.specializations)
+                        addBusyAdapter.submitList(employee.busies)
                     }
                 }
             }
@@ -102,13 +131,22 @@ class AddEmployeeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.specializations.collect { spec ->
-                    with(binding) {
-                        spec?.let { notNullSpec ->
-                            val list = addSpecAdapter.currentList.toMutableList()
-                            list.add(notNullSpec)
-                            addSpecAdapter.submitList(list)
-                        }
+                    spec?.let { notNullSpec ->
+                        val list = addSpecAdapter.currentList.toMutableList()
+                        list.add(notNullSpec)
+                        addSpecAdapter.submitList(list)
+                    }
+                }
+            }
+        }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.busies.collect { business ->
+                    business?.let { notNullBusiness ->
+                        val list = addBusyAdapter.currentList.toMutableList()
+                        list.add(notNullBusiness)
+                        addBusyAdapter.submitList(list)
                     }
                 }
             }
@@ -116,17 +154,34 @@ class AddEmployeeFragment : Fragment() {
     }
 
     private fun createAddSpecDialog() {
-
-        val specs: MutableList<EmployeeSpecialization> = mutableListOf()
-
         findNavController().navigate(
             R.id.action_addEmployeeFragment_to_addSpecializationDialog
         )
+    }
 
-}
+    private fun createAddBusyDialog() {
+        val now = Calendar.getInstance()
+        val picker = MaterialDatePicker
+            .Builder
+            .dateRangePicker()
+            .setSelection(androidx.core.util.Pair(now.timeInMillis, now.timeInMillis))
+            .build()
 
-override fun onDestroyView() {
-    super.onDestroyView()
-    _binding = null
-}
+        picker.addOnPositiveButtonClickListener {
+            viewModel.addBusy(
+                business = EmployeeBusiness(
+                    startDate = it.first,
+                    endDate = it.second,
+                )
+            )
+            picker.dismiss()
+        }
+
+        picker.show(activity?.supportFragmentManager!!, picker.toString())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

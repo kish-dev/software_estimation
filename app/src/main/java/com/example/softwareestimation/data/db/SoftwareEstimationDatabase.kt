@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.softwareestimation.data.db.employees.Employee
 import com.example.softwareestimation.data.db.employees.EmployeeDao
+import com.example.softwareestimation.data.db.employees.JSONConverterBusiness
 import com.example.softwareestimation.data.db.employees.JSONConverterSpecializations
 import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
 import com.example.softwareestimation.data.db.estimated_project.EstimatedProjectDao
@@ -13,9 +14,12 @@ import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
     entities = [ProjectPercentSpreadForTypes::class,
         EstimatedProject::class,
                Employee::class,],
-    version = 5, exportSchema = false
+    version = 6, exportSchema = false
 )
-@TypeConverters(JSONConverterSpecializations::class)
+@TypeConverters(
+    JSONConverterSpecializations::class,
+    JSONConverterBusiness::class
+)
 abstract class SoftwareEstimationDatabase : RoomDatabase() {
 
     abstract fun estimatedProjectDao(): EstimatedProjectDao

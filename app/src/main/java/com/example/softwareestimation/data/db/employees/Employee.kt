@@ -14,8 +14,24 @@ data class Employee(
     val name: String,
     val surname: String,
     val specializations: List<EmployeeSpecialization>,
-    //TODO Add date of projects
+    val busies: List<EmployeeBusiness>,
 )
+
+class JSONConverterBusiness {
+    @TypeConverter
+    fun fromBusiness(business: List<EmployeeBusiness>): String {
+        val gson = Gson()
+        val type: Type = object : TypeToken<List<EmployeeBusiness>?>() {}.type
+        return gson.toJson(business, type)
+    }
+
+    @TypeConverter
+    fun toBusiness(business: String?): List<EmployeeBusiness>? {
+        val gson = Gson()
+        val type: Type = object : TypeToken<List<EmployeeBusiness>?>() {}.type
+        return gson.fromJson(business, type)
+    }
+}
 
 class JSONConverterSpecializations {
     @TypeConverter

@@ -87,6 +87,7 @@ class EmployeeDetailsEditFragment : Fragment() {
                                     employeeDetailsEditName.text.toString(),
                                     employeeDetailsEditSurname.text.toString(),
                                     specAdapter.currentList,
+                                    emptyList(),
                                 )
                             )
 

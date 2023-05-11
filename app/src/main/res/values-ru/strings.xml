@@ -77,6 +77,8 @@
     <string name="level_spec">Уровень</string>
     <string name="cancel">Отмена</string>
     <string name="ok">Окей</string>
+    <string name="from_date">from</string>
+    <string name="to_date">to</string>
     <string-array name="levels_spinner">
         <item>Стажёр</item>
         <item>Джуниор</item>

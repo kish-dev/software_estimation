@@ -25,6 +25,7 @@ class EmployeeDetailsViewModel @Inject constructor(
                 "",
                 "",
                 "",
+                emptyList(),
                 emptyList()
             )
         )

@@ -73,6 +73,8 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="level_spec">Level</string>
+    <string name="from_date">from</string>
+    <string name="to_date">to</string>
     <string-array name="project_types">
         <item>Mobile app</item>
         <item>Web app</item>
