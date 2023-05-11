@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +35,7 @@ class EmployeeDetailsEditFragment : Fragment() {
     private val binding
         get() = _binding!!
 
-    private val viewModel: EmployeeDetailsEditViewModel by viewModels()
+    private val viewModel: EmployeeDetailsEditViewModel by activityViewModels()
 
     private val specAdapter = AddEmployeeSpecializationAdapter(
         listener = object : AddEmployeeSpecializationAdapter.AddEmployeeViewHolderListener {
@@ -167,7 +168,7 @@ class EmployeeDetailsEditFragment : Fragment() {
 
     private fun createAddSpecDialog() {
         findNavController().navigate(
-            R.id.action_addEmployeeFragment_to_addSpecializationDialog
+            R.id.action_employeeDetailsEditFragment_to_addSpecializationDialogInEditEmployee
         )
     }
 
@@ -178,8 +179,6 @@ class EmployeeDetailsEditFragment : Fragment() {
                     with(binding) {
                         employeeDetailsEditName.setText(employee.name)
                         employeeDetailsEditSurname.setText(employee.surname)
-                        specAdapter.submitList(employee.specializations)
-                        busyAdapter.submitList(employee.busies)
                     }
                 }
             }

@@ -57,9 +57,16 @@
             app:destination="@id/employeeDetailsFragment"
             app:popUpTo="@id/employeeDetailsFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_employeeDetailsEditFragment_to_addSpecializationDialogInEditEmployee"
+            app:destination="@id/addSpecializationDialogInEditEmployee" />
     </fragment>
     <dialog
         android:id="@+id/addSpecializationDialog"
         android:name="com.example.softwareestimation.add_employee_feature.add_specialization_dialog.AddSpecializationDialog"
         android:label="AddSpecializationDialog" />
+    <dialog
+        android:id="@+id/addSpecializationDialogInEditEmployee"
+        android:name="com.example.softwareestimation.employee_details_edit_feature.add_specialization_dialog.AddSpecializationDialogInEditEmployee"
+        android:label="AddSpecializationDialogInEditEmployee" />
 </navigation>
