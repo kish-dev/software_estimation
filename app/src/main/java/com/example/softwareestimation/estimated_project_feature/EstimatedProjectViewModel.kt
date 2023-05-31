@@ -5,10 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
 import com.example.softwareestimation.data.db.ProjectPercentSpreadForTypes
 import com.example.softwareestimation.data.db.ProjectTypes
+import com.example.softwareestimation.data.db.employees.Employee
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.onEmpty
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,6 +43,12 @@ class EstimatedProjectViewModel @Inject constructor(
     var projectPercentSpread: StateFlow<ProjectPercentSpreadForTypes?> =
         _projectPercentSpread
 
+    private val _employees: MutableStateFlow<List<Employee>> =
+        MutableStateFlow(emptyList())
+
+    var employees: StateFlow<List<Employee>> =
+        _employees
+
     fun updateEstimatedProject(projectName: String) {
         viewModelScope.launch(handler) {
             val estimatedProject = useCase.getEstimatedProject(projectName)
@@ -49,10 +57,24 @@ class EstimatedProjectViewModel @Inject constructor(
         }
     }
 
+    fun getEmployees() {
+        viewModelScope.launch(handler) {
+            val employees = useCase.getEmployees()
+            _employees.emit(employees)
+        }
+    }
+
     private fun updateProjectPercentSpread(type: ProjectTypes) {
         viewModelScope.launch(handler) {
             val projectPercentSpread = useCase.getProjectPercentSpread(type)
             _projectPercentSpread.emit(projectPercentSpread)
+        }
+    }
+
+    fun uploadNewEmployees(employees: List<Employee>) {
+        viewModelScope.launch(handler) {
+            useCase.uploadNewEmployees(employees)
+            getEmployees()
         }
     }
 

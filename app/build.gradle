@@ -84,4 +84,6 @@ dependencies {
 
     // Pie diagram
     implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"
+
+    implementation 'org.apache.poi:poi:3.17'
 }

@@ -1,6 +1,7 @@
 package com.example.softwareestimation.estimated_project_feature
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,14 +14,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.softwareestimation.R
 import com.example.softwareestimation.data.db.ProjectPercentSpreadForTypes
+import com.example.softwareestimation.data.db.employees.*
+import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
 import com.example.softwareestimation.databinding.FragmentEstimatedProjectBinding
-import com.github.mikephil.charting.animation.Easing
+import com.example.softwareestimation.time_diagram_feature.CellDto
+import com.example.softwareestimation.time_diagram_feature.ExcelUtils
+import com.example.softwareestimation.time_diagram_feature.RowDto
+import com.example.softwareestimation.time_diagram_feature.TimeDiagramDto
 import com.github.mikephil.charting.animation.Easing.EaseInOutQuad
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class EstimatedProjectFragment : Fragment() {
@@ -87,8 +96,182 @@ class EstimatedProjectFragment : Fragment() {
                 viewModel.projectPercentSpread.collect { projectSpread ->
                     initPieChart()
                     setPieChartDiagram(projectSpread)
+                    //распределить по коэффициентам ребят, миддл - коэфф 1, сеньор - 1,5, джун - 0,5, интерн - 0,25, лид - 2
+                    //чисто по зпхе
+                    //
+                    createExcelDiagram(
+                        employees = viewModel.employees.value,
+                        estimatedProject = viewModel.estimatedProject.value,
+                        projectPercentSpread = projectSpread,
+                    )
                 }
             }
+        }
+    }
+
+    private fun createExcelDiagram(
+        employees: List<Employee>,
+        estimatedProject: EstimatedProject,
+        projectPercentSpread: ProjectPercentSpreadForTypes?,
+    ) {
+        projectPercentSpread?.let { notNullProjectPercentSpread ->
+            var analyticsWeeks =
+                estimatedProject.fullHumanMonth * (notNullProjectPercentSpread.analyticPercent
+                    ?: 0.0) * 4.0
+            var androidWeeks =
+                estimatedProject.fullHumanMonth * (notNullProjectPercentSpread.androidPercent
+                    ?: 0.0) * 4.0
+            var frontendWeeks =
+                estimatedProject.fullHumanMonth * (notNullProjectPercentSpread.frontendPercent
+                    ?: 0.0) * 4.0
+            var backendWeeks =
+                estimatedProject.fullHumanMonth * (notNullProjectPercentSpread.backendPercent
+                    ?: 0.0) * 4.0
+            var iosWeeks =
+                estimatedProject.fullHumanMonth * (notNullProjectPercentSpread.iosPercent
+                    ?: 0.0) * 4.0
+            var testWeeks =
+                estimatedProject.fullHumanMonth * (notNullProjectPercentSpread.testPercent
+                    ?: 0.0) * 4.0
+            var manageWeeks =
+                estimatedProject.fullHumanMonth * (notNullProjectPercentSpread.managePercent
+                    ?: 0.0) * 4.0
+
+            //будем проходиться грубым алгоритмом
+            //первый кто нужен - менеджер и аналитик
+            //второй кто нужен это бекендер
+            //мобилки + фронт
+            //тестирование
+
+
+            //в каждом месяце - 4 недели
+
+            // вычислить для следующей недели кол-во работников по специальности
+            // закрасить их (либо после)
+            // перейти на следующую неделю
+
+            val newEmployeesManager = employees.filter {
+                it.isSpecificWorker(EmployeeSpheres.PROJECT_MANAGER)
+            }
+
+            var currentDateForCount = getNextMonday().time
+            val startBusiesTime = currentDateForCount
+
+            val weekCounts = mutableListOf<String>()
+
+            while (manageWeeks > 0) {
+                val weekCount = getCountEmployeeFreeInWeek(currentDateForCount, newEmployeesManager)
+                manageWeeks -= weekCount
+                weekCounts.add(weekCount.toString())
+                currentDateForCount += (ONE_DAY * 7)
+            }
+
+            val newManagerEmployees =
+                markBusiesForEmployees(startBusiesTime, currentDateForCount, newEmployeesManager)
+            viewModel.uploadNewEmployees(newManagerEmployees)
+
+            val cells = weekCounts.map {
+                CellDto(
+                    text = it,
+                    color = ""
+                )
+            }
+
+            val dataTimeDiagramDto = TimeDiagramDto(
+                rows = listOf(
+                    RowDto(
+                        cells = cells
+                    )
+                ),
+                projectName = estimatedProject.projectName,
+                startWeek = Date(startBusiesTime),
+                lastWeek = Date(currentDateForCount),
+                )
+
+            ExcelUtils.exportDataIntoWorkbook(
+                context = requireContext(),
+                fileName = estimatedProject.projectName,
+                diagramDto = dataTimeDiagramDto
+            )
+
+        }
+
+
+    }
+
+    private fun exportDataIntoWorkbook(context: Context, weekCount: List<Double>) {
+        val fileName = UUID.randomUUID().toString()
+
+
+    }
+
+    private fun markBusiesForEmployees(
+        startDate: Long,
+        endDate: Long,
+        employees: List<Employee>
+    ): List<Employee> {
+        val newEmployees = mutableListOf<Employee>()
+        employees.forEach {
+            val newBusies = it.busies.toMutableList()
+            newBusies.add(EmployeeBusiness(startDate, endDate))
+            newEmployees.add(
+                Employee(
+                    guid = it.guid,
+                    name = it.name,
+                    surname = it.surname,
+                    specializations = it.specializations,
+                    busies = newBusies
+                )
+            )
+        }
+
+        return newEmployees
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun getNextMonday(): Date {
+        val localDate = LocalDate.now().dayOfWeek.name
+
+        val plusToDate = when (localDate) {
+            "MONDAY" -> 0
+            "TUESDAY" -> 1
+            "WEDNESDAY" -> 2
+            "THURSDAY" -> 3
+            "FRIDAY" -> 4
+            "SATURDAY" -> 5
+            "SUNDAY" -> 6
+
+            else -> 0
+        }
+
+
+        val currentMonday =
+            Date(
+                System.currentTimeMillis() + (plusToDate * ONE_DAY)
+            )
+
+        return currentMonday
+    }
+
+    private fun getCountEmployeeFreeInWeek(monday: Long, employees: List<Employee>): Double {
+        val countInDays = getCountEmployeeFreeInDay(monday, employees) +
+                getCountEmployeeFreeInDay(monday + ONE_DAY, employees) +
+                getCountEmployeeFreeInDay(monday + (2 * ONE_DAY), employees) +
+                getCountEmployeeFreeInDay(monday + (3 * ONE_DAY), employees) +
+                getCountEmployeeFreeInDay(monday + (4 * ONE_DAY), employees)
+
+        return countInDays.toDouble() / 5
+    }
+
+    private fun getCountEmployeeFreeInDay(day: Long, employees: List<Employee>): Int {
+
+        return employees.count {
+            !it.busies.contains(
+                EmployeeBusiness(
+                    startDate = day,
+                    endDate = day + ONE_DAY - 1
+                )
+            )
         }
     }
 
@@ -234,6 +417,9 @@ class EstimatedProjectFragment : Fragment() {
 
     companion object {
         const val PROJECT_NAME = "projectName"
+
+        const val ONE_DAY = 86_400_000
+
     }
 
 }

@@ -72,10 +72,12 @@ class DomainModule {
     @Provides
     fun provideEstimatedProjectRepository(
         estimatedProjectDao: EstimatedProjectDao,
+        employeesDao: EmployeeDao,
         projectPercentSpreadForTypesDao: ProjectPercentSpreadForTypesDao,
     ): EstimatedProjectRepository {
         return EstimatedProjectRepository(
             estimatedProjectDao,
+            employeesDao,
             projectPercentSpreadForTypesDao
         )
     }
