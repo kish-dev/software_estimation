@@ -4,19 +4,23 @@ import com.example.softwareestimation.data.FillFormRepository
 import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
 import com.example.softwareestimation.data.db.FillFormFunctionPoints
 import com.example.softwareestimation.data.db.ProjectTypes
+import com.example.softwareestimation.time_diagram_feature.TimeDiagramDto
+import com.example.softwareestimation.time_diagram_feature.TimeDiagramUseCase
 import java.util.*
 import javax.inject.Inject
 import kotlin.math.pow
 
 class FillFormInteractor @Inject constructor(
     private val repository: FillFormRepository,
+    private val timeDiagramUseCase: TimeDiagramUseCase,
 ): FillFormUseCase {
 
     override suspend fun sendFilledForm(form: FillFormFunctionPoints) {
-        repository.saveEstimatedProjectResult(estimateProject(form))
+        val project = estimateProject(form)
+        repository.saveEstimatedProjectResult(project)
     }
 
-    private fun estimateProject(form: FillFormFunctionPoints): EstimatedProject {
+    private suspend fun estimateProject(form: FillFormFunctionPoints): EstimatedProject {
 
         //данные идеально правильные
         var functionalSize = 0
@@ -51,13 +55,29 @@ class FillFormInteractor @Inject constructor(
 
         val humanMonth = getHumanMonthFromLOC(loc)
 
+
+        val preEstimatedProject = EstimatedProject(
+            guid = UUID.randomUUID().toString(),
+            projectName = form.projectName,
+            projectDescription = form.projectDescription,
+            projectTypes = form.projectType,
+            fullHumanMonth = humanMonth,
+            generatedTimeDiagramDto = null
+        )
+
+
         return EstimatedProject(
             guid = UUID.randomUUID().toString(),
             projectName = form.projectName,
             projectDescription = form.projectDescription,
             projectTypes = form.projectType,
-            fullHumanMonth = humanMonth
+            fullHumanMonth = humanMonth,
+            generatedTimeDiagramDto = getTimeDiagram(preEstimatedProject)
         )
+    }
+
+    private suspend fun getTimeDiagram(estimatedProject: EstimatedProject): TimeDiagramDto {
+        return timeDiagramUseCase.getTimeDiagram(estimatedProject)
     }
 
     private fun getProjectTypeLOC(type: ProjectTypes): Int {

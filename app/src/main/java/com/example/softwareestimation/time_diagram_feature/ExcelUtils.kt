@@ -1,21 +1,23 @@
 package com.example.softwareestimation.time_diagram_feature
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.net.Uri
 import android.os.Environment
-import android.text.style.DynamicDrawableSpan.ALIGN_CENTER
 import android.util.Log
-import org.apache.poi.hssf.usermodel.HSSFCellStyle
+import androidx.core.content.FileProvider
+import com.example.softwareestimation.R
+import com.example.softwareestimation.data.db.employees.Employee
+import com.example.softwareestimation.data.db.employees.EmployeeBusiness
+import com.example.softwareestimation.data.db.employees.EmployeeSpheres
+import com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
-import org.apache.poi.hssf.util.HSSFColor
-import org.apache.poi.ss.usermodel.Row
-import org.apache.poi.ss.usermodel.CellStyle
-import org.apache.poi.ss.usermodel.Workbook
-import org.apache.poi.ss.usermodel.Cell
-import org.apache.poi.ss.usermodel.Sheet
+import org.apache.poi.ss.usermodel.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 
@@ -23,9 +25,10 @@ object ExcelUtils {
     const val TAG = "ExcelUtil"
     private var cell: Cell? = null
     private var sheet: Sheet? = null
-    private var workbook: Workbook? = null
+    private var workbook: HSSFWorkbook? = null
     private var headerCellStyle: CellStyle? = null
-    const val ONE_WEEK = 86_400_000 * 7
+    private const val ONE_DAY = 86_400_000
+    private const val ONE_WEEK = ONE_DAY * 7
 
     /**
      * Export Data into Excel Workbook
@@ -38,13 +41,13 @@ object ExcelUtils {
         context: Context,
         fileName: String,
         diagramDto: TimeDiagramDto,
-    ): Boolean {
-        val isWorkbookWrittenIntoStorage: Boolean
+    ): Uri? {
+        val isWorkbookWrittenIntoStorage: Uri?
 
         // Check if available and not read only
         if (!isExternalStorageAvailable || isExternalStorageReadOnly) {
             Log.e(TAG, "Storage not available or read only")
-            return false
+            return null
         }
 
         // Creating a New HSSF Workbook (.xls format)
@@ -55,7 +58,6 @@ object ExcelUtils {
         sheet = workbook!!.createSheet(diagramDto.projectName)
         sheet!!.setColumnWidth(0, 15 * 400)
         sheet!!.setColumnWidth(1, 15 * 400)
-        setHeaderRow()
         fillDataIntoExcel(diagramDto)
         isWorkbookWrittenIntoStorage = storeExcelInStorage(context, fileName)
         return isWorkbookWrittenIntoStorage
@@ -87,25 +89,11 @@ object ExcelUtils {
      * Setup header cell style
      */
     private fun setHeaderCellStyle() {
-        headerCellStyle = workbook!!.createCellStyle()
-        headerCellStyle!!.setFillForegroundColor(HSSFColor.AQUA.index)
+//        headerCellStyle = workbook!!.createCellStyle()
+//        headerCellStyle!!.setFillForegroundColor(HSSFColor.AQUA.index)
 //        headerCellStyle!!.setFillPattern(HSSFCellStyle)
 //        headerCellStyle!!.setAlignment(CellStyle.ALIGN_CENTER)
     }
-
-    /**
-     * Setup Header Row
-     */
-    private fun setHeaderRow() {
-        val headerRow: Row = sheet!!.createRow(0)
-        cell = headerRow.createCell(0)
-        cell!!.setCellValue("Name")
-        cell!!.cellStyle = headerCellStyle
-        cell = headerRow.createCell(1)
-        cell!!.setCellValue("Phone Number")
-        cell!!.cellStyle = headerCellStyle
-    }
-
     /**
      * Fills Data into Excel Sheet
      *
@@ -137,10 +125,13 @@ object ExcelUtils {
             // Create a New Row for every new entry in list
             val rowData: Row = sheet!!.createRow(i + 2)
 
+            cell = rowData.createCell(0)
+            cell!!.setCellValue(diagramDto.rows[i].firstCellString)
+
             for (j in diagramDto.rows[i].cells.indices) {
 
                 // Create Cells for each row
-                cell = rowData.createCell(j)
+                cell = rowData.createCell(j + 1)
                 cell!!.setCellValue(diagramDto.rows[i].cells[j].text)
             }
         }
@@ -153,9 +144,10 @@ object ExcelUtils {
      * @param fileName - name of workbook which will be stored in device
      * @return boolean - returns state whether workbook is written into storage or not
      */
-    private fun storeExcelInStorage(context: Context, fileName: String): Boolean {
+    private fun storeExcelInStorage(context: Context, fileName: String): Uri? {
+        val excelFileName = "${fileName}.xls"
         var isSuccess: Boolean
-        val file = File(context.getExternalFilesDir(null), fileName)
+        val file = File(context.getExternalFilesDir(null), excelFileName)
         var fileOutputStream: FileOutputStream? = null
         try {
             fileOutputStream = FileOutputStream(file)
@@ -170,13 +162,64 @@ object ExcelUtils {
             isSuccess = false
         } finally {
             try {
-                if (null != fileOutputStream) {
-                    fileOutputStream.close()
-                }
+                fileOutputStream?.close()
             } catch (ex: Exception) {
                 ex.printStackTrace()
             }
         }
-        return isSuccess
+        return FileProvider.getUriForFile(
+            context,
+            context.applicationContext.packageName.toString() + ".provider",
+            file
+        )
+    }
+
+
+    @SuppressLint("SimpleDateFormat")
+    fun getNextMonday(): Date {
+        val localDate = LocalDate.now().dayOfWeek.name
+
+        val plusToDate = when (localDate) {
+            "MONDAY" -> 0
+            "TUESDAY" -> 1
+            "WEDNESDAY" -> 2
+            "THURSDAY" -> 3
+            "FRIDAY" -> 4
+            "SATURDAY" -> 5
+            "SUNDAY" -> 6
+
+            else -> 0
+        }
+
+
+        val currentMonday =
+            Date(
+                System.currentTimeMillis() + (plusToDate * EstimatedProjectFragment.ONE_DAY)
+            )
+
+        return currentMonday
+    }
+
+
+    fun getCountEmployeeFreeInWeek(monday: Long, employees: List<Employee>): Double {
+        val countInDays = getCountEmployeeFreeInDay(monday, employees) +
+                getCountEmployeeFreeInDay(monday + ONE_DAY, employees) +
+                getCountEmployeeFreeInDay(monday + (2 * ONE_DAY), employees) +
+                getCountEmployeeFreeInDay(monday + (3 * ONE_DAY), employees) +
+                getCountEmployeeFreeInDay(monday + (4 * ONE_DAY), employees)
+
+        return countInDays.toDouble() / 5
+    }
+
+    private fun getCountEmployeeFreeInDay(day: Long, employees: List<Employee>): Int {
+
+        return employees.count {
+            !it.busies.contains(
+                EmployeeBusiness(
+                    startDate = day,
+                    endDate = day + ONE_DAY - 1
+                )
+            )
+        }
     }
 }

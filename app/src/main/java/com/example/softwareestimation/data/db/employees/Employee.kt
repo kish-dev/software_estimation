@@ -16,7 +16,7 @@ data class Employee(
     val specializations: List<EmployeeSpecialization>,
     val busies: List<EmployeeBusiness>,
 ) {
-    fun isSpecificWorker(sphere: EmployeeSpheres): Boolean {
+    fun isSpecificWorker(sphere: EmployeeSpheres, ): Boolean {
         return specializations.contains(
             EmployeeSpecialization(sphere, EmployeesLevels.INTERN)
         ) ||
@@ -26,10 +26,10 @@ data class Employee(
                 ||
                 specializations.contains(
                     EmployeeSpecialization(sphere, EmployeesLevels.MIDDLE)
-                )||
+                ) ||
                 specializations.contains(
                     EmployeeSpecialization(sphere, EmployeesLevels.SENIOR)
-                )||specializations.contains(
+                ) || specializations.contains(
             EmployeeSpecialization(sphere, EmployeesLevels.LEAD)
         )
     }

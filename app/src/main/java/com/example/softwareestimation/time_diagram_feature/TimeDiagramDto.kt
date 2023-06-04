@@ -8,6 +8,7 @@ data class CellDto(
 )
 
 data class RowDto(
+    val firstCellString: String,
     val cells: List<CellDto>
 )
 

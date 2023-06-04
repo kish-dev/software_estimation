@@ -1,13 +1,19 @@
 package com.example.softwareestimation.fill_project_form_feature
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ShareCompat
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -28,6 +34,12 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FillFormFragment : Fragment() {
+
+    private val PERMISSIONS = arrayOf(
+        Manifest.permission.READ_CONTACTS,
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
 
     private var _binding: FragmentFillFormBinding? = null
     private val binding
@@ -65,19 +77,45 @@ class FillFormFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFillFormBinding.inflate(inflater, container, false)
-
+        initViewModelState()
         return binding.root
+    }
+
+    private fun checkPermissionsAtRuntime(): Boolean {
+        for (permission in PERMISSIONS) {
+            if (ActivityCompat.checkSelfPermission(requireContext(), permission)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            PERMISSIONS,
+            Constants.REQUEST_PERMISSION_ALL
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         initObservers()
+        if (!checkPermissionsAtRuntime()) {
+            requestPermissions()
+        }
+    }
+
+    private fun initViewModelState() {
+        viewModel.updateViewModelState(FillFormFunctionPointsVo.baseState())
     }
 
     private fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.functionPoint.collect {
                     enterParametersAdapter.submitList(it.enterParams)
                     mainCharacteristicsAdapter.submitList(it.mainSystemCharacteristics)

@@ -1,5 +1,6 @@
 package com.example.softwareestimation.di
 
+import android.content.Context
 import com.example.softwareestimation.add_employee_feature.AddEmployeeInteractor
 import com.example.softwareestimation.add_employee_feature.AddEmployeeRepository
 import com.example.softwareestimation.add_employee_feature.AddEmployeeUseCase
@@ -18,9 +19,13 @@ import com.example.softwareestimation.estimated_project_feature.EstimatedProject
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectUseCase
 import com.example.softwareestimation.fill_project_form_feature.FillFormInteractor
 import com.example.softwareestimation.fill_project_form_feature.FillFormUseCase
+import com.example.softwareestimation.time_diagram_feature.TimeDiagramInteractor
+import com.example.softwareestimation.time_diagram_feature.TimeDiagramRepository
+import com.example.softwareestimation.time_diagram_feature.TimeDiagramUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -31,9 +36,10 @@ class DomainModule {
     @Singleton
     @Provides
     fun provideFillFormUseCase(
-        fillFormRepository: FillFormRepository
+        fillFormRepository: FillFormRepository,
+        timeDiagramUseCase: TimeDiagramUseCase,
     ): FillFormUseCase {
-        return FillFormInteractor(fillFormRepository)
+        return FillFormInteractor(fillFormRepository, timeDiagramUseCase)
     }
 
     @Singleton
@@ -50,6 +56,18 @@ class DomainModule {
         allProjectsRepository: AllProjectsRepository
     ): AllProjectsUseCase {
         return AllProjectsInteractor(allProjectsRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideTimeDiagramUseCase(
+        timeDiagramRepository: TimeDiagramRepository,
+        @ApplicationContext context: Context,
+    ): TimeDiagramUseCase {
+        return TimeDiagramInteractor(
+            timeDiagramRepository,
+            context
+        )
     }
 
     @Singleton
@@ -84,9 +102,21 @@ class DomainModule {
 
     @Singleton
     @Provides
-    fun provideFillFormRepository(estimatedProjectDao: EstimatedProjectDao): FillFormRepository {
+    fun provideFillFormRepository(
+        estimatedProjectDao: EstimatedProjectDao,
+    ): FillFormRepository {
         return FillFormRepository(estimatedProjectDao)
     }
+
+    @Singleton
+    @Provides
+    fun provideTimeDiagramRepository(
+        employeesDao: EmployeeDao,
+        projectPercentSpreadForTypesDao: ProjectPercentSpreadForTypesDao,
+    ): TimeDiagramRepository {
+        return TimeDiagramRepository(employeesDao, projectPercentSpreadForTypesDao)
+    }
+
 
     @Singleton
     @Provides

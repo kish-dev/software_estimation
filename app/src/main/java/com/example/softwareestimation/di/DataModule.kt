@@ -24,7 +24,9 @@ class DataModule {
             context,
             SoftwareEstimationDatabase::class.java,
             DB_NAME
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides

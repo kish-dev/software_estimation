@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class EstimatedProjectInteractor @Inject constructor(
     private val estimatedProjectRepository: EstimatedProjectRepository
-): EstimatedProjectUseCase {
+) : EstimatedProjectUseCase {
 
     override suspend fun getEstimatedProject(projectName: String): EstimatedProject {
         return estimatedProjectRepository.getEstimatedProject(projectName)
@@ -19,10 +19,17 @@ class EstimatedProjectInteractor @Inject constructor(
     }
 
     override suspend fun getEmployees(): List<Employee> {
-        return estimatedProjectRepository.getEmployess()
+        return estimatedProjectRepository.getEmployees()
     }
 
     override suspend fun uploadNewEmployees(employees: List<Employee>) {
         return estimatedProjectRepository.uploadNewEmployees(employees)
+    }
+
+    override suspend fun uploadEstimatedProjectWithNewGeneratedTimeDiagram(
+        estimatedProject: EstimatedProject
+    ) {
+        return estimatedProjectRepository
+            .uploadEstimatedProjectWithNewGeneratedTimeDiagram(estimatedProject)
     }
 }

@@ -3,10 +3,13 @@ package com.example.softwareestimation.data
 import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
 import com.example.softwareestimation.data.db.estimated_project.EstimatedProjectDao
 import com.example.softwareestimation.data.db.ProjectTypes
+import com.example.softwareestimation.data.db.employees.Employee
+import com.example.softwareestimation.data.db.employees.EmployeeDao
+import com.example.softwareestimation.time_diagram_feature.TimeDiagramRepository
 import javax.inject.Inject
 
 class FillFormRepository @Inject constructor(
-    private val estimatedProjectDao: EstimatedProjectDao
+    private val estimatedProjectDao: EstimatedProjectDao,
 ) {
 
     fun getProjectTypeLOC(type: ProjectTypes): Int {

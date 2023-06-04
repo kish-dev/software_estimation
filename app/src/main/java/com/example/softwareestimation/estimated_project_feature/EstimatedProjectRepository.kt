@@ -20,13 +20,17 @@ class EstimatedProjectRepository @Inject constructor(
         return projectPercentSpreadForTypesDao.getProjectPercentByType(type)
     }
 
-    suspend fun getEmployess(): List<Employee> {
+    suspend fun getEmployees(): List<Employee> {
         return employeeDao.getAllEmployees()
     }
 
-    suspend fun uploadNewEmployees(emplyees: List<Employee>) {
-        return emplyees.forEach {
+    suspend fun uploadNewEmployees(employees: List<Employee>) {
+        return employees.forEach {
             employeeDao.addEmployee(it)
         }
+    }
+
+    suspend fun uploadEstimatedProjectWithNewGeneratedTimeDiagram(estimatedProject: EstimatedProject) {
+        return estimatedProjectDao.addEstimatedProject(estimatedProject)
     }
 }
