@@ -15,7 +15,35 @@ data class Employee(
     val surname: String,
     val specializations: List<EmployeeSpecialization>,
     val busies: List<EmployeeBusiness>,
-)
+) {
+    fun isSpecificWorker(sphere: EmployeeSpheres): Boolean {
+        return specializations.contains(
+            EmployeeSpecialization(sphere, EmployeesLevels.INTERN)
+        ) ||
+                specializations.contains(
+                    EmployeeSpecialization(sphere, EmployeesLevels.JUNIOR)
+                )
+                ||
+                specializations.contains(
+                    EmployeeSpecialization(sphere, EmployeesLevels.MIDDLE)
+                ) ||
+                specializations.contains(
+                    EmployeeSpecialization(sphere, EmployeesLevels.SENIOR)
+                ) || specializations.contains(
+            EmployeeSpecialization(sphere, EmployeesLevels.LEAD)
+        )
+    }
+
+    fun hasBusies(startDate: Long, endDate: Long): Boolean {
+        busies.forEach {
+            if (it.startDate <= startDate && it.endDate >= endDate) {
+                return true
+            }
+        }
+
+        return false
+    }
+}
 
 class JSONConverterBusiness {
     @TypeConverter

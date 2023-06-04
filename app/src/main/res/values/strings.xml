@@ -75,6 +75,9 @@
     <string name="level_spec">Level</string>
     <string name="from_date">from</string>
     <string name="to_date">to</string>
+    <string name="generate_time_diagram">Generate time diagram again</string>
+    <string name="send_time_diagram">Send time diagram</string>
+    <string name="time_diagram_generated">Time diagram is generated</string>
     <string-array name="project_types">
         <item>Mobile app</item>
         <item>Web app</item>

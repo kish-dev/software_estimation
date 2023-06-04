@@ -1,11 +1,15 @@
 package com.example.softwareestimation.estimated_project_feature
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,14 +17,25 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.softwareestimation.R
 import com.example.softwareestimation.data.db.ProjectPercentSpreadForTypes
+import com.example.softwareestimation.data.db.employees.Employee
+import com.example.softwareestimation.data.db.employees.EmployeeBusiness
+import com.example.softwareestimation.data.db.employees.EmployeeSpecialization
+import com.example.softwareestimation.data.db.employees.EmployeeSpheres
+import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
 import com.example.softwareestimation.databinding.FragmentEstimatedProjectBinding
-import com.github.mikephil.charting.animation.Easing
+import com.example.softwareestimation.time_diagram_feature.CellDto
+import com.example.softwareestimation.time_diagram_feature.ExcelUtils
+import com.example.softwareestimation.time_diagram_feature.RowDto
+import com.example.softwareestimation.time_diagram_feature.TimeDiagramDto
 import com.github.mikephil.charting.animation.Easing.EaseInOutQuad
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.util.*
+
 
 @AndroidEntryPoint
 class EstimatedProjectFragment : Fragment() {
@@ -31,6 +46,8 @@ class EstimatedProjectFragment : Fragment() {
 
     private val viewModel: EstimatedProjectViewModel by viewModels()
     private var projectName: String? = null
+    private var isExcel = false
+    private var isFirstOpen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +75,18 @@ class EstimatedProjectFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initObservers()
         getEstimatedProject()
+        initViews()
+    }
+
+    private fun initViews() {
+        with(binding) {
+            sendTimeDiagramButton.setOnClickListener {
+                sendTimeDiagram(viewModel.estimatedProject.value)
+            }
+            generateTimeDiagramButton.setOnClickListener {
+                generateExcelDiagram(viewModel.estimatedProject.value)
+            }
+        }
     }
 
     private fun getEstimatedProject() {
@@ -91,6 +120,40 @@ class EstimatedProjectFragment : Fragment() {
             }
         }
     }
+
+    private fun sendTimeDiagram(
+        estimatedProject: EstimatedProject,
+    ) {
+        val uri = estimatedProject.generatedTimeDiagramDto?.let {
+            ExcelUtils.exportDataIntoWorkbook(
+                context = requireContext(),
+                fileName = estimatedProject.projectName,
+                diagramDto = it,
+            )
+        }
+
+        uri?.let {
+            launchShareFileIntent(it)
+        }
+    }
+
+    private fun launchShareFileIntent(uri: Uri) {
+        val intent = ShareCompat.IntentBuilder.from(requireActivity())
+            .setType("application/excel")
+            .setStream(uri)
+            .setChooserTitle("Select application to share file")
+            .createChooserIntent()
+            .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        startActivity(intent)
+    }
+
+    private fun generateExcelDiagram(
+        estimatedProject: EstimatedProject,
+    ) {
+        viewModel.generateTimeDiagram(estimatedProject)
+        Toast.makeText(requireContext(), R.string.time_diagram_generated, Toast.LENGTH_SHORT).show()
+    }
+
 
     private fun setPieChartDiagram(projectPercentSpread: ProjectPercentSpreadForTypes?) {
         projectPercentSpread?.let {
@@ -234,6 +297,9 @@ class EstimatedProjectFragment : Fragment() {
 
     companion object {
         const val PROJECT_NAME = "projectName"
+
+        const val ONE_DAY = 86_400_000
+
     }
 
 }

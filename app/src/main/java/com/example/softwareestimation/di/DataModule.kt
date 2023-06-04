@@ -24,7 +24,8 @@ class DataModule {
             context,
             SoftwareEstimationDatabase::class.java,
             DB_NAME
-        ).build()
+        )
+            .build()
     }
 
     @Provides

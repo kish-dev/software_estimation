@@ -7,18 +7,22 @@ import com.example.softwareestimation.data.db.employees.Employee
 import com.example.softwareestimation.data.db.employees.EmployeeDao
 import com.example.softwareestimation.data.db.employees.JSONConverterBusiness
 import com.example.softwareestimation.data.db.employees.JSONConverterSpecializations
-import com.example.softwareestimation.data.db.estimated_project.EstimatedProject
-import com.example.softwareestimation.data.db.estimated_project.EstimatedProjectDao
+import com.example.softwareestimation.data.db.estimated_project.*
 
 @Database(
     entities = [ProjectPercentSpreadForTypes::class,
         EstimatedProject::class,
                Employee::class,],
-    version = 6, exportSchema = false
+    version = 7,
+    exportSchema = false,
 )
 @TypeConverters(
     JSONConverterSpecializations::class,
-    JSONConverterBusiness::class
+    JSONConverterBusiness::class,
+    JSONConverterTimeDiagram::class,
+    JSONConverterProjectTypes::class,
+    JSONConverterRow::class,
+    JSONConverterCell::class,
 )
 abstract class SoftwareEstimationDatabase : RoomDatabase() {
 
