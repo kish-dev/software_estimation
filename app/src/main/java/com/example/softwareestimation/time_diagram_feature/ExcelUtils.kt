@@ -6,13 +6,13 @@ import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import androidx.core.content.FileProvider
-import com.example.softwareestimation.R
 import com.example.softwareestimation.data.db.employees.Employee
-import com.example.softwareestimation.data.db.employees.EmployeeBusiness
-import com.example.softwareestimation.data.db.employees.EmployeeSpheres
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment
-import org.apache.poi.hssf.usermodel.HSSFWorkbook
-import org.apache.poi.ss.usermodel.*
+import org.apache.poi.ss.usermodel.Cell
+import org.apache.poi.ss.usermodel.CellStyle
+import org.apache.poi.ss.usermodel.Row
+import org.apache.poi.ss.usermodel.Sheet
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -25,7 +25,7 @@ object ExcelUtils {
     const val TAG = "ExcelUtil"
     private var cell: Cell? = null
     private var sheet: Sheet? = null
-    private var workbook: HSSFWorkbook? = null
+    private var workbook: XSSFWorkbook? = null
     private var headerCellStyle: CellStyle? = null
     private const val ONE_DAY = 86_400_000
     private const val ONE_WEEK = ONE_DAY * 7
@@ -51,7 +51,7 @@ object ExcelUtils {
         }
 
         // Creating a New HSSF Workbook (.xls format)
-        workbook = HSSFWorkbook()
+        workbook = XSSFWorkbook()
         setHeaderCellStyle()
 
         // Creating a New Sheet and Setting width for each column
@@ -94,6 +94,7 @@ object ExcelUtils {
 //        headerCellStyle!!.setFillPattern(HSSFCellStyle)
 //        headerCellStyle!!.setAlignment(CellStyle.ALIGN_CENTER)
     }
+
     /**
      * Fills Data into Excel Sheet
      *
@@ -145,9 +146,13 @@ object ExcelUtils {
      * @return boolean - returns state whether workbook is written into storage or not
      */
     private fun storeExcelInStorage(context: Context, fileName: String): Uri? {
-        val excelFileName = "${fileName}.xls"
+        val excelFileName = "${fileName}.xlsx"
         var isSuccess: Boolean
-        val file = File(context.getExternalFilesDir(null), excelFileName)
+        var file = File(context.getExternalFilesDir(null), excelFileName)
+        if (file.exists()) {
+            file.delete()
+        }
+        file = File(context.getExternalFilesDir(null), excelFileName)
         var fileOutputStream: FileOutputStream? = null
         try {
             fileOutputStream = FileOutputStream(file)
