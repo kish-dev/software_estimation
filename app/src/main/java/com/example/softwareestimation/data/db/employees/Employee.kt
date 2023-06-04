@@ -16,7 +16,7 @@ data class Employee(
     val specializations: List<EmployeeSpecialization>,
     val busies: List<EmployeeBusiness>,
 ) {
-    fun isSpecificWorker(sphere: EmployeeSpheres, ): Boolean {
+    fun isSpecificWorker(sphere: EmployeeSpheres): Boolean {
         return specializations.contains(
             EmployeeSpecialization(sphere, EmployeesLevels.INTERN)
         ) ||
@@ -32,6 +32,16 @@ data class Employee(
                 ) || specializations.contains(
             EmployeeSpecialization(sphere, EmployeesLevels.LEAD)
         )
+    }
+
+    fun hasBusies(startDate: Long, endDate: Long): Boolean {
+        busies.forEach {
+            if (it.startDate <= startDate && it.endDate >= endDate) {
+                return true
+            }
+        }
+
+        return false
     }
 }
 

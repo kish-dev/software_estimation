@@ -25,7 +25,6 @@ class DataModule {
             SoftwareEstimationDatabase::class.java,
             DB_NAME
         )
-            .fallbackToDestructiveMigration()
             .build()
     }
 

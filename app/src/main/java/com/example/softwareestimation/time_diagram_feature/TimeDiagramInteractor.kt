@@ -16,6 +16,10 @@ class TimeDiagramInteractor @Inject constructor(
     private val applicationContext: Context,
 ) : TimeDiagramUseCase {
 
+    companion object {
+        private const val ONE_DAY = 86_400_000
+    }
+
     override suspend fun getEmployees(): List<Employee> {
         return timeDiagramRepository.getEmployees()
     }
@@ -183,10 +187,7 @@ class TimeDiagramInteractor @Inject constructor(
         val startBusiesTime = currentDateForCount
 
         val newEmployeesManager = employees.filter {
-            it.isSpecificWorker(
-                sphere,
-
-                )
+            it.isSpecificWorker(sphere)
         }
 
         val weekCounts = mutableListOf<String>()
@@ -197,7 +198,7 @@ class TimeDiagramInteractor @Inject constructor(
                     ExcelUtils.getCountEmployeeFreeInWeek(currentDateForCount, newEmployeesManager)
                 changedWeeksCount -= weekCount
                 weekCounts.add(weekCount.toString())
-                currentDateForCount += (com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment.Companion.ONE_DAY * 7)
+                currentDateForCount += (ONE_DAY * 7)
             }
 
             val newManagerEmployees =

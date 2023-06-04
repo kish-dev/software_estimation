@@ -214,12 +214,7 @@ object ExcelUtils {
     private fun getCountEmployeeFreeInDay(day: Long, employees: List<Employee>): Int {
 
         return employees.count {
-            !it.busies.contains(
-                EmployeeBusiness(
-                    startDate = day,
-                    endDate = day + ONE_DAY - 1
-                )
-            )
+            !it.hasBusies(day, day + ONE_DAY - 1)
         }
     }
 }

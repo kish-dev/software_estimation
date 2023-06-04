@@ -81,6 +81,7 @@
     <string name="to_date">to</string>
     <string name="generate_time_diagram">Сгенерировать временную диаграмму заново</string>
     <string name="send_time_diagram">Отправить временную диаграмму</string>
+    <string name="time_diagram_generated">Временная диаграмма сгенерирована</string>
     <string-array name="levels_spinner">
         <item>Стажёр</item>
         <item>Джуниор</item>
