@@ -150,8 +150,9 @@ class EstimatedProjectFragment : Fragment() {
     private fun generateExcelDiagram(
         estimatedProject: EstimatedProject,
     ) {
-        viewModel.generateTimeDiagram(estimatedProject)
-        Toast.makeText(requireContext(), R.string.time_diagram_generated, Toast.LENGTH_SHORT).show()
+        viewModel.generateTimeDiagram(estimatedProject) {
+            Toast.makeText(requireContext(), R.string.time_diagram_generated, Toast.LENGTH_SHORT).show()
+        }
     }
 
 

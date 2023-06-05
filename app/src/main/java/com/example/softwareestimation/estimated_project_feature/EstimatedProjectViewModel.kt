@@ -61,13 +61,14 @@ class EstimatedProjectViewModel @Inject constructor(
         }
     }
 
-    fun generateTimeDiagram(estimatedProject: EstimatedProject) {
+    fun generateTimeDiagram(estimatedProject: EstimatedProject, lambda: () -> Unit) {
         viewModelScope.launch {
             val newEstimatedProject = estimatedProject.copy(
                 generatedTimeDiagramDto = timeDiagramUseCase.getTimeDiagram(estimatedProject)
             )
 
             useCase.uploadEstimatedProjectWithNewGeneratedTimeDiagram(newEstimatedProject)
+            lambda.invoke()
         }
     }
 
