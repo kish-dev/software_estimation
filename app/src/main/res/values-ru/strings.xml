@@ -66,8 +66,8 @@
     <string name="projects_list_screen_description">Описание экрана списка проектов</string>
     <string name="projects_list_screen_title">Список проектов</string>
     <string name="add_project_screen_description">Описание экрана добавления проекта</string>
-    <string name="add_project_screen_title">Заголовок экрана добавления проекта</string>
-    <string name="employees_list_screen_title">Заголовок экрана списка работников</string>
+    <string name="add_project_screen_title">Добавить проект</string>
+    <string name="employees_list_screen_title">Команда</string>
     <string name="employees_list_screen_description">Описание экрана списка работников</string>
     <string name="fragment_estimated_project_screen">Estimated project</string>
     <string name="fragment_add_employee_screen">Add employee</string>

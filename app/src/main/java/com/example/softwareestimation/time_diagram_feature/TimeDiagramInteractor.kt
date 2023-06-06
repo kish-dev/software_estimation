@@ -195,7 +195,11 @@ class TimeDiagramInteractor @Inject constructor(
         if (newEmployeesManager.isNotEmpty()) {
             while (changedWeeksCount > 0) {
                 val weekCount =
-                    ExcelUtils.getCountEmployeeFreeInWeek(currentDateForCount, newEmployeesManager)
+                    ExcelUtils.getCountEmployeeFreeInWeek(
+                        currentDateForCount,
+                        newEmployeesManager,
+                        sphere,
+                    )
                 changedWeeksCount -= weekCount
                 weekCounts.add(weekCount.toString())
                 currentDateForCount += (ONE_DAY * 7)

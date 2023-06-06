@@ -7,6 +7,8 @@ import android.os.Environment
 import android.util.Log
 import androidx.core.content.FileProvider
 import com.example.softwareestimation.data.db.employees.Employee
+import com.example.softwareestimation.data.db.employees.EmployeeSpheres
+import com.example.softwareestimation.data.db.employees.EmployeesLevels
 import com.example.softwareestimation.estimated_project_feature.EstimatedProjectFragment
 import org.apache.poi.ss.usermodel.Cell
 import org.apache.poi.ss.usermodel.CellStyle
@@ -206,20 +208,44 @@ object ExcelUtils {
     }
 
 
-    fun getCountEmployeeFreeInWeek(monday: Long, employees: List<Employee>): Double {
-        val countInDays = getCountEmployeeFreeInDay(monday, employees) +
-                getCountEmployeeFreeInDay(monday + ONE_DAY, employees) +
-                getCountEmployeeFreeInDay(monday + (2 * ONE_DAY), employees) +
-                getCountEmployeeFreeInDay(monday + (3 * ONE_DAY), employees) +
-                getCountEmployeeFreeInDay(monday + (4 * ONE_DAY), employees)
+    fun getCountEmployeeFreeInWeek(
+        monday: Long,
+        employees: List<Employee>,
+        currentSphere: EmployeeSpheres,
+    ): Double {
+        val countInDays = getCountEmployeeFreeInDay(monday, employees, currentSphere) +
+                getCountEmployeeFreeInDay(monday + ONE_DAY, employees, currentSphere) +
+                getCountEmployeeFreeInDay(monday + (2 * ONE_DAY), employees, currentSphere) +
+                getCountEmployeeFreeInDay(monday + (3 * ONE_DAY), employees, currentSphere) +
+                getCountEmployeeFreeInDay(monday + (4 * ONE_DAY), employees, currentSphere)
 
-        return countInDays.toDouble() / 5
+        return countInDays / 5
     }
 
-    private fun getCountEmployeeFreeInDay(day: Long, employees: List<Employee>): Int {
-
-        return employees.count {
-            !it.hasBusies(day, day + ONE_DAY - 1)
+    private fun getMultiplyCounter(level: EmployeesLevels?): Double {
+        return when (level) {
+            null -> 0.0
+            EmployeesLevels.INTERN -> 0.25
+            EmployeesLevels.JUNIOR -> 0.5
+            EmployeesLevels.MIDDLE -> 1.0
+            EmployeesLevels.SENIOR -> 1.5
+            EmployeesLevels.LEAD -> 2.0
         }
+    }
+
+    private fun getCountEmployeeFreeInDay(
+        day: Long,
+        employees: List<Employee>,
+        currentSphere: EmployeeSpheres,
+    ): Double {
+        var count = 0.0
+        employees.forEach { employee ->
+            if (!employee.hasBusies(day, day + ONE_DAY - 1)) {
+                count += 1 * getMultiplyCounter(employee.specializations.first {
+                    it.sphere == currentSphere
+                }.level)
+            }
+        }
+        return count
     }
 }
